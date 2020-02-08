@@ -11,10 +11,28 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('admin', function () {
+
+    return view('admin.index');
+});
+
+
+
+// Route::get('clients', 'ClientsController@index');
+Route::resource('clients', 'ClientsController');
+
+Route::resource('users', 'UsersController');
+
+Route::get('transactions', 'TransactionsController@index');
