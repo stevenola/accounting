@@ -15,7 +15,8 @@ class AddRoleColumnToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('role')->nullable();
+            $table->integer('role')->nullable();
+            $table->integer('active')->nullable();
         });
     }
 

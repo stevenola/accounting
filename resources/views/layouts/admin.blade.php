@@ -32,7 +32,7 @@
 
 <body>
   <div>
-
+    <!-- TOP NAV BAR -->
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -67,6 +67,12 @@
         </ul>
       </div>
     </nav>
+
+    <!-- SIDE NAV BAR -->
+
+
+
+
 
     @yield('content')
 
