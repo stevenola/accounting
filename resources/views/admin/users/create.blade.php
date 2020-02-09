@@ -7,7 +7,7 @@
 
   <div class="container">
 
-    <!-- {!! Form::open(['method'=>'POST', 'action'=> 'UsersController@store', 'files'=>true]) !!} -->
+
 
     {!! Form::open(['method'=>'POST', 'action'=> 'UsersController@store']) !!}
     {{csrf_field()}}

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Client;
+
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -17,10 +19,13 @@ class ClientsController extends Controller
         //
         $clients = Client::all();
 
-        // dd($clients);
-        return view('admin.clients.index', [
-            'clients' => $clients,
-        ]);
+
+
+        return view('admin.clients.index', compact('clients'));
+
+        // return view('admin.clients.index', [
+        //     'clients' => $clients,
+        // ]);
     }
 
     /**
@@ -31,7 +36,11 @@ class ClientsController extends Controller
     public function create()
     {
         //
-        return view('admin.clients.create');
+
+        $users = User::pluck('name', 'id')->all();
+
+
+        return view('admin.clients.create', compact('users'));
     }
 
     /**
@@ -43,6 +52,12 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+
+        Client::create($input);
+
+        // users is name.  NOT url
+        return redirect('clients');
     }
 
     /**
@@ -54,8 +69,7 @@ class ClientsController extends Controller
     public function show($id)
     {
         //
-
-
+        return view('admin.clients.show');
     }
 
     /**
@@ -67,6 +81,12 @@ class ClientsController extends Controller
     public function edit($id)
     {
         //
+        $client = Client::findOrFail($id);
+
+        $users = User::pluck('name', 'id')->all();
+
+
+        return view('admin.clients.edit', compact('client', 'users'));
     }
 
     /**
@@ -79,6 +99,13 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $client = Client::findOrFail($id);
+
+        $input = $request->all();
+
+        $client->update($input);
+
+        return redirect('clients');
     }
 
     /**
@@ -90,5 +117,12 @@ class ClientsController extends Controller
     public function destroy($id)
     {
         //
+        $client = Client::findOrFail($id);
+
+        $client->delete();
+
+
+
+        return redirect('clients');
     }
 }
