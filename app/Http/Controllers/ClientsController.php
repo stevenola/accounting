@@ -19,7 +19,7 @@ class ClientsController extends Controller
         //
         $clients = Client::all();
 
-
+        $clients = $clients->sortBy('name');
 
         return view('admin.clients.index', compact('clients'));
 

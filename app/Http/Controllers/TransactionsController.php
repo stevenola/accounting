@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\Client;
+use App\Description;
+use App\Transaction;
+
 class TransactionsController extends Controller
 {
     /**
@@ -16,7 +21,13 @@ class TransactionsController extends Controller
         //
         {
             //
-            return view('admin.transactions.index');
+
+            $transactions = Transaction::all();
+
+            $transactions = $transactions->sortByDesc('created_at');
+            // $transactions = Transaction::all();
+
+            return view('admin.transactions.index', compact('transactions'));
         }
     }
 
@@ -28,6 +39,23 @@ class TransactionsController extends Controller
     public function create()
     {
         //
+        $clients = Client::pluck('name', 'id')->all();
+
+        $descriptions = Description::pluck('name', 'id')->all();
+
+        return view('admin.transactions.create', compact('clients', 'descriptions'));
+    }
+
+    public function createdeposit()
+    {
+        //
+        $clients = Client::pluck('name', 'id')->all();
+
+        $descriptions = Description::pluck('name', 'id')->all();
+
+
+
+        return view('admin.transactions.createdeposit', compact('clients'));
     }
 
     /**
@@ -39,6 +67,12 @@ class TransactionsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+
+        Transaction::create($input);
+
+        // users is name.  NOT url
+        return redirect('transactions');
     }
 
     /**
@@ -50,6 +84,7 @@ class TransactionsController extends Controller
     public function show($id)
     {
         //
+        return view('admin.transactions.show');
     }
 
     /**
@@ -61,6 +96,14 @@ class TransactionsController extends Controller
     public function edit($id)
     {
         //
+        $transaction = Transaction::findOrFail($id);
+
+        $clients = Client::pluck('name', 'id')->all();
+
+        $descriptions = Description::pluck('name', 'id')->all();
+
+
+        return view('admin.transactions.edit', compact('transaction', 'clients', 'descriptions'));
     }
 
     /**
@@ -73,6 +116,13 @@ class TransactionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $transaction = Transaction::findOrFail($id);
+
+        $input = $request->all();
+
+        $transaction->update($input);
+
+        return redirect('transactions');
     }
 
     /**
@@ -84,5 +134,12 @@ class TransactionsController extends Controller
     public function destroy($id)
     {
         //
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->delete();
+
+
+
+        return redirect('transactions');
     }
 }

@@ -33,3 +33,5 @@ Route::resource('clients', 'ClientsController');
 Route::resource('users', 'UsersController');
 
 Route::resource('transactions', 'TransactionsController');
+
+Route::get('createdeposit', 'TransactionsController@createdeposit');
