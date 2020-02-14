@@ -15,6 +15,8 @@
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\TransactionsController;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -35,3 +37,13 @@ Route::resource('users', 'UsersController');
 Route::resource('transactions', 'TransactionsController');
 
 Route::get('createdeposit', 'TransactionsController@createdeposit');
+
+// Route::get('show', 'TransactionsController@show');
+
+
+Route::get('htmlpdf58', 'PDFController@htmlPDF58');
+Route::get('generatePDF58', 'PDFController@generatePDF58');
+
+Route::get('htmlPDF', function () {
+    return view('/htmlPDF');
+});

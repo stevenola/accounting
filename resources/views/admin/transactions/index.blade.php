@@ -59,11 +59,11 @@
       <td>{{$transaction->amount2}}</td>
       <td>{{$transaction->notes}}</td>
       <td>{{$transaction->check_no}}</td>
-
-
+      <td><a href="{{route('transactions.show', $transaction->id)}}">Print</a></td>
 
 
     </tr>
+
 
     @endforeach
     @endif

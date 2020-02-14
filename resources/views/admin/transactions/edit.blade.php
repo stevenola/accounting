@@ -3,6 +3,21 @@
 @section('content')
 
 <div class="container">
+
+  <form method="GET" action="/generatePDF58" enctype="multipart/form-data">
+
+    <div class="form-group">
+
+      <div class="control">
+
+        <button type="submit" class="btn btn-primary">Generate PDF File</button>
+
+      </div>
+
+    </div>
+
+  </form>
+
   <h1>Edit Transaction</h1>
 
   {!! Form::model($transaction,['method'=>'PATCH', 'action'=> ['TransactionsController@update', $transaction->id], 'files'=>true]) !!}

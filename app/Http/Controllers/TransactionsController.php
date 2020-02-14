@@ -25,9 +25,12 @@ class TransactionsController extends Controller
             $transactions = Transaction::all();
 
             $transactions = $transactions->sortByDesc('created_at');
-            // $transactions = Transaction::all();
+
+            // $amount1 = $transactions->sum('amount1');
+            // $amount2 = $transactions->sum('amount2');
 
             return view('admin.transactions.index', compact('transactions'));
+            // return view('admin.transactions.index', compact('transactions', 'amount1', 'amount2'));
         }
     }
 
@@ -84,7 +87,15 @@ class TransactionsController extends Controller
     public function show($id)
     {
         //
-        return view('admin.transactions.show');
+        $transaction = Transaction::findOrFail($id);
+
+        $clients = Client::pluck('name', 'id')->all();
+
+        $descriptions = Description::pluck('name', 'id')->all();
+
+
+
+        return view('admin.transactions.show', compact('transaction', 'clients', 'descriptions'));
     }
 
     /**

@@ -13,7 +13,7 @@
     <div class="form-group">
       {!! Form::label('client_id', 'Clients:') !!}
       <?php asort($clients); ?>
-      {!! Form::select('client_id', $clients, null, ['class'=>'form-control'])!!}
+      {!! Form::select('client_id', $clients, null, ['placeholder' => 'choose a client'],['class'=>'form-control'])!!}
 
     </div>
 
