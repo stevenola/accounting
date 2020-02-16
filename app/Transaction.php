@@ -20,7 +20,5 @@ class Transaction extends Model
         return $this->belongsTo('App\Description', 'description1');
     }
 
-
-
     public $sortable = ['create_at'];
 }

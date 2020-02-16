@@ -6,6 +6,7 @@ use App\Http\Requests\CreateClientRequest;
 use App\User;
 use App\Client;
 use App\Transaction;
+use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 
@@ -136,7 +137,8 @@ class ClientsController extends Controller
 
         $clients = $clients->sortBy('name');
 
+        $transactions = Transaction::all();
 
-        return view('admin.clients.transsum', compact('clients'));
+        return view('admin.clients.transsum', compact('clients', 'transactions'));
     }
 }
