@@ -12,6 +12,12 @@
 </div>
 {!! Form::close() !!}
 
+{!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@transsum']]) !!}
+<div class="form-group">
+  {!! Form::submit('Transaction Summary', ['class'=>'btn btn-primary col-sm-2']) !!}
+</div>
+{!! Form::close() !!}
+
 
 </div>
 
@@ -23,7 +29,6 @@
     <tr>
 
       <th>Name</th>
-
       <th>Retainer</th>
       <th>Recurring</th>
       <th>Print</th>
@@ -42,7 +47,7 @@
     <tr>
 
       <td><a href="{{route('clients.edit', $client->id)}}">{{$client->name}}</a></td>
-      <!-- <td>{{$client->name}}</td> -->
+
 
       <td>{{$client->retainer}}</td>
       <td>{{$client->recurring == 1 ? 'Recurring' : 'No'}}</td>

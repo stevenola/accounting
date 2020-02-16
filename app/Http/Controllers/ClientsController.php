@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateClientRequest;
 use App\User;
 use App\Client;
-
+use App\Transaction;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -17,6 +19,8 @@ class ClientsController extends Controller
     public function index()
     {
         //
+
+
         $clients = Client::all();
 
         $clients = $clients->sortBy('name');
@@ -49,7 +53,7 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateClientRequest $request)
     {
         //
         $input = $request->all();
@@ -124,5 +128,15 @@ class ClientsController extends Controller
 
 
         return redirect('clients');
+    }
+    public function transsum()
+
+    {
+        $clients = Client::all();
+
+        $clients = $clients->sortBy('name');
+
+
+        return view('admin.clients.transsum', compact('clients'));
     }
 }

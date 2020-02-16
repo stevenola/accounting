@@ -30,15 +30,26 @@ Route::get('admin', function () {
     return view('admin.index');
 });
 
-Route::resource('clients', 'ClientsController');
+// The middleware web route wraps around route for validation messages
+Route::group(['middleware' => 'web'], function () {
+    Route::resource('clients', 'ClientsController');
+});
 
-Route::resource('users', 'UsersController');
+Route::get('transsum', 'ClientsController@transsum');
 
-Route::resource('transactions', 'TransactionsController');
+
+// The middleware web route wraps around route for validation messages
+Route::group(['middleware' => 'web'], function () {
+    Route::resource('users', 'UsersController');
+});
+
+// The middleware web route wraps around route for validation messages
+Route::group(['middleware' => 'web'], function () {
+    Route::resource('transactions', 'TransactionsController');
+});
 
 Route::get('createdeposit', 'TransactionsController@createdeposit');
 
-// Route::get('show', 'TransactionsController@show');
 
 
 Route::get('htmlpdf58', 'PDFController@htmlPDF58');

@@ -4,6 +4,22 @@
 
 <div class="well">
   <h1>Make Deposit</h1>
+
+  @if(count($errors)> 0)
+  <div class="alert alert-danger">
+
+    <ul>
+
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+
+  </div>
+
+
+  @endif
+
   <div class="container">
 
     {!! Form::open(['method'=>'POST', 'action'=> 'TransactionsController@store']) !!}
@@ -13,7 +29,7 @@
     <div class="form-group">
       {!! Form::label('client_id', 'Clients:') !!}
       <?php asort($clients); ?>
-      {!! Form::select('client_id', $clients, null, ['class'=>'form-control'])!!}
+      {!! Form::select('client_id', $clients, null, ['placeholder' => 'choose a client'],['class'=>'form-control'])!!}
 
 
       <div class="form-group">

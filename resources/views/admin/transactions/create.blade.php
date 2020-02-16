@@ -4,6 +4,22 @@
 
 <div class="well">
   <h1>Create Invoice</h1>
+
+  @if(count($errors)> 0)
+  <div class="alert alert-danger">
+
+    <ul>
+
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+
+  </div>
+
+
+  @endif
+
   <div class="container">
 
     {!! Form::open(['method'=>'POST', 'action'=> 'TransactionsController@store']) !!}

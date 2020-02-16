@@ -31,7 +31,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
-      <th>Active</th>
+      <th>Status</th>
 
     </tr>
   </thead>

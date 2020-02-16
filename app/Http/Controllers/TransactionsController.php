@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
+use App\Http\Requests\CreateTransactionRequest;
 use App\Client;
 use App\Description;
 use App\Transaction;
@@ -26,11 +26,7 @@ class TransactionsController extends Controller
 
             $transactions = $transactions->sortByDesc('created_at');
 
-            // $amount1 = $transactions->sum('amount1');
-            // $amount2 = $transactions->sum('amount2');
-
             return view('admin.transactions.index', compact('transactions'));
-            // return view('admin.transactions.index', compact('transactions', 'amount1', 'amount2'));
         }
     }
 
@@ -67,10 +63,16 @@ class TransactionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTransactionRequest $request)
     {
         //
+
+
         $input = $request->all();
+
+        if ($input['type'] == 0) {
+            $input['amount1'] = $input['amount1'] * -1;
+        }
 
         Transaction::create($input);
 
@@ -153,4 +155,6 @@ class TransactionsController extends Controller
 
         return redirect('transactions');
     }
+
+ 
 }
