@@ -5,17 +5,24 @@
 <h1>Transactions</h1>
 
 
-  {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@create']]) !!}
-  <div class="form-group">
-    {!! Form::submit('Create Invoice', ['class'=>'btn btn-primary col-sm-2']) !!}
-  </div>
-  {!! Form::close() !!}
+{!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@create']]) !!}
+<div class="form-group">
+  {!! Form::submit('Create Invoice', ['class'=>'btn btn-primary col-sm-2']) !!}
+</div>
+{!! Form::close() !!}
 
-  {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createdeposit']]) !!}
-  <div class="form-group">
-    {!! Form::submit('Make Deposit', ['class'=>'btn btn-primary col-sm-2']) !!}
-  </div>
-  {!! Form::close() !!}
+{!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createrecur']]) !!}
+<div class="form-group">
+  {!! Form::submit('Recurring Invoices', ['class'=>'btn btn-primary col-sm-2']) !!}
+</div>
+{!! Form::close() !!}
+
+
+{!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createdeposit']]) !!}
+<div class="form-group">
+  {!! Form::submit('Make Deposit', ['class'=>'btn btn-primary col-sm-2']) !!}
+</div>
+{!! Form::close() !!}
 
 
 

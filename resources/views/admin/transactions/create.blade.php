@@ -29,6 +29,7 @@
     <div class="form-group">
       {!! Form::label('client_id', 'Clients:') !!}
       <?php asort($clients); ?>
+      
       {!! Form::select('client_id', $clients, null, ['placeholder' => 'choose a client'],['class'=>'form-control'])!!}
 
     </div>
@@ -42,8 +43,6 @@
       {!! Form::label('description1', 'Desc 1:') !!}
       {!! Form::select('description1', $descriptions, null, ['class'=>'form-control'])!!}
 
-      <!-- {!! Form::label('description1', 'Desc 1:') !!}
-      {!! Form::select('description1', array(1 => 'Monthly', 0 => 'OTB Subscription'), 1, ['class'=>'form-control'])!!} -->
     </div>
 
     <div class="form-group">
@@ -64,7 +63,7 @@
 
     <div class="form-group">
       {!! Form::label('notes', 'Notes:') !!}
-      {!! Form::text('zip', null, ['class'=>'form-control'])!!}
+      {!! Form::text('notes', null, ['class'=>'form-control'])!!}
     </div>
 
     <div class="form-group">

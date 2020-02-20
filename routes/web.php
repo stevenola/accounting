@@ -48,6 +48,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('transactions', 'TransactionsController');
 });
 
+Route::get('createrecur', 'TransactionsController@createrecur');
+Route::get('storerecur', 'TransactionsController@storerecur');
+
 Route::get('createdeposit', 'TransactionsController@createdeposit');
 
 

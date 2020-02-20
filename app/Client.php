@@ -8,7 +8,7 @@ class Client extends Model
 {
     //
     protected $fillable = [
-        'name', 'street', 'city', 'state', 'zip', 'retainer', 'recurring', 'print', 'active', 'in_state', 'consultant',
+        'id', 'name', 'street', 'city', 'state', 'zip', 'retainer', 'recurring', 'print', 'active', 'in_state', 'consultant',
     ];
     // consultant is table column name in client table
     public function user()

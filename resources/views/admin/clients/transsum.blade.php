@@ -28,13 +28,14 @@
       @foreach($clients as $client)
 
 
+
       <tr>
 
         <td>{{$client->name}}</td>
-        <!-- <td> {{$transactions->sum('amount1')}}</td> -->
-        <!-- <td> {{$transactions->where($transactions , $client->id)->sum('amount1')}}</td> -->
         <td>{{$transactions->where('client_id', $client->id)->sum('amount1')}}</td>
       </tr>
+
+
 
       @endforeach
 
