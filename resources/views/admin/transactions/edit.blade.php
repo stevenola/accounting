@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-
+  <!-- 
   <form method="GET" action="/generatePDF58" enctype="multipart/form-data">
 
     <div class="form-group">
@@ -16,7 +16,7 @@
 
     </div>
 
-  </form>
+  </form> -->
 
   <h1>Edit Transaction</h1>
 

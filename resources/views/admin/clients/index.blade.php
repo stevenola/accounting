@@ -55,6 +55,7 @@
       <td>{{$client->active == 1 ? 'Active' : 'Not Active'}}</td>
       <td>{{$client->in_state == 1 ? 'In State' : 'Out of State'}}</td>
       <td>{{$client->user->name}}</td>
+      <td><a href="{{url('showclienttrans/'.$client->id. '/')}}">View Trans</a></td>
 
     </tr>
 

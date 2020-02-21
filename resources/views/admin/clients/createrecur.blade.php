@@ -11,9 +11,14 @@
     {{csrf_field()}}
 
     @if($clients)
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-success">
+    </div>
+
     @foreach ($clients as $client)
 
-
+    @if($client->active == 1)
 
 
     <div class="form-group">
@@ -24,13 +29,12 @@
       <input type="text" name="retainer[]" value="{{$client->retainer}}" class="form-control">
     </div>
 
+    @endif
 
     @endforeach
 
 
-    <div class="form-group">
-      <input type="submit" class="btn">
-    </div>
+
 
 
 

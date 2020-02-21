@@ -91,42 +91,10 @@ class ClientsController extends Controller
             $transactions->save();
         }
 
-        // $client["id"] = $request->id;
-        // $client["retainer"] = $request->retainer;
-
-
-        // foreach ($transactions as $transaction) {
-        //     $values = new Transaction();
-        //     $values->client_id = $client["id"];
-        //     $values->amount1 = $client["retainer"];
-        //     $values->save();
-        // }
-
-
 
         // users is name.  NOT url
         return redirect('transactions');
     }
-
-    // this worked with storerecur() empty parenthesis
-    // $transactions = array(
-    //     array(
-    //         "id" => "5",
-    //         "type" => "1",
-    //         "description1" => "1",
-    //         "amount1" => "333",
-    //     ),
-
-    //     array(
-    //         "id" => "9",
-    //         "type" => "1",
-    //         "description1" => "1",
-    //         "amount1" => "222",
-    //     )
-
-    // );
-
-
 
 
     // RECURRING FUNCTION END ******************************************

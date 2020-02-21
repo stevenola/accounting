@@ -45,70 +45,6 @@ class TransactionsController extends Controller
         return view('admin.transactions.create', compact('clients', 'descriptions'));
     }
 
-
-
-    // RECURRING FUNCTION ******************************************
-
-    // public function createrecur()
-    // {
-    //     //
-
-    //     $transactions = Transaction::all();
-
-    //     $clients = Client::pluck('name', 'id')->all();
-
-    //     $descriptions = Description::pluck('name', 'id')->all();
-
-    //     return view('admin.transactions.createrecur', compact('transactions', 'clients', 'descriptions'));
-    // }
-
-    // public function storerecur(CreateTransactionRequest $request)
-    // {
-
-
-    // this worked with storerecur() empty parenthesis
-    // $transactions = array(
-    //     array(
-    //         "id" => "5",
-    //         "type" => "1",
-    //         "description1" => "1",
-    //         "amount1" => "333",
-    //     ),
-
-    //     array(
-    //         "id" => "9",
-    //         "type" => "1",
-    //         "description1" => "1",
-    //         "amount1" => "222",
-    //     )
-
-    // );
-    // $transactions = Transaction::all();
-
-    // $transaction["id"] = $request->id;
-    // $transaction["type"] = $request->type;
-    // $transaction["description1"] = $request->description1;
-    // $transaction["amount1"] = $request->retainer;
-
-
-    // foreach ($transactions as $transaction) {
-    //     $values = new Transaction();
-    //     $values->client_id = $transaction["id"];
-    //     $values->type = $transaction["type"];
-    //     $values->description1 = $transaction['description1'];
-    //     $values->amount1 = $transaction['amount1'];
-    //     $values->save();
-    // }
-
-    // // users is name.  NOT url
-    // return redirect('transactions');
-    // }
-
-
-    // RECURRING FUNCTION END ******************************************
-
-
-
     public function createdeposit()
     {
         //
@@ -211,12 +147,29 @@ class TransactionsController extends Controller
     public function destroy($id)
     {
         //
+
+
         $transaction = Transaction::findOrFail($id);
 
         $transaction->delete();
 
-
+        $clients = Client::pluck('name', 'id')->all();
 
         return redirect('transactions');
+    }
+
+    public function showclienttrans($id)
+    {
+        //
+        {
+            //
+
+
+            $transactions = Transaction::all();
+
+            $transactions = $transactions->sortByDesc('created_at');
+
+            return view('admin.clients.showclienttrans', compact('transactions'));
+        }
     }
 }
