@@ -11,7 +11,7 @@
 </div>
 {!! Form::close() !!}
 
-{!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createrecur']]) !!}
+{!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@createrecur']]) !!}
 <div class="form-group">
   {!! Form::submit('Recurring Invoices', ['class'=>'btn btn-primary col-sm-2']) !!}
 </div>

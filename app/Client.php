@@ -20,4 +20,8 @@ class Client extends Model
     {
         return $this->hasMany('App\Transaction', 'amount1');
     }
+    public function description()
+    {
+        return $this->belongsTo('App\Description', 'description1');
+    }
 }

@@ -48,12 +48,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('transactions', 'TransactionsController');
 });
 
-Route::get('createrecur', 'TransactionsController@createrecur');
-Route::get('storerecur', 'TransactionsController@storerecur');
+Route::get('createrecur', 'ClientsController@createrecur');
+Route::get('storerecur', 'ClientsController@storerecur');
+
+
+
 
 Route::get('createdeposit', 'TransactionsController@createdeposit');
-
-
 
 Route::get('htmlpdf58', 'PDFController@htmlPDF58');
 Route::get('generatePDF58', 'PDFController@generatePDF58');

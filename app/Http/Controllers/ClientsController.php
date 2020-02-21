@@ -6,6 +6,7 @@ use App\Http\Requests\CreateClientRequest;
 use App\User;
 use App\Client;
 use App\Transaction;
+use App\Description;
 use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
@@ -38,6 +39,7 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -64,6 +66,73 @@ class ClientsController extends Controller
         // users is name.  NOT url
         return redirect('clients');
     }
+
+    // RECURRING FUNCTION ******************************************
+
+    public function createrecur()
+    {
+        //
+        $clients = Client::all();
+        $transactions = Transaction::all();
+        $descriptions = Description::pluck('name', 'id')->all();
+
+        return view('admin.clients.createrecur', compact('clients', 'transactions', 'descriptions'));
+    }
+
+    public function storerecur(Request $request)
+    {
+        $transactions = Transaction::all();
+        $clients = Client::all();
+
+        foreach ($request->id as $index => $id) {
+            $transactions = new Transaction();
+            $transactions->client_id = $request->id[$index];
+            $transactions->amount1 = $request->retainer[$index];
+            $transactions->save();
+        }
+
+        // $client["id"] = $request->id;
+        // $client["retainer"] = $request->retainer;
+
+
+        // foreach ($transactions as $transaction) {
+        //     $values = new Transaction();
+        //     $values->client_id = $client["id"];
+        //     $values->amount1 = $client["retainer"];
+        //     $values->save();
+        // }
+
+
+
+        // users is name.  NOT url
+        return redirect('transactions');
+    }
+
+    // this worked with storerecur() empty parenthesis
+    // $transactions = array(
+    //     array(
+    //         "id" => "5",
+    //         "type" => "1",
+    //         "description1" => "1",
+    //         "amount1" => "333",
+    //     ),
+
+    //     array(
+    //         "id" => "9",
+    //         "type" => "1",
+    //         "description1" => "1",
+    //         "amount1" => "222",
+    //     )
+
+    // );
+
+
+
+
+    // RECURRING FUNCTION END ******************************************
+
+
+
 
     /**
      * Display the specified resource.

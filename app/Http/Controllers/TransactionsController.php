@@ -49,60 +49,60 @@ class TransactionsController extends Controller
 
     // RECURRING FUNCTION ******************************************
 
-    public function createrecur()
-    {
-        //
+    // public function createrecur()
+    // {
+    //     //
 
-        $transactions = Transaction::all();
+    //     $transactions = Transaction::all();
 
-        $clients = Client::pluck('name', 'id')->all();
+    //     $clients = Client::pluck('name', 'id')->all();
 
-        $descriptions = Description::pluck('name', 'id')->all();
+    //     $descriptions = Description::pluck('name', 'id')->all();
 
-        return view('admin.transactions.createrecur', compact('transactions', 'clients', 'descriptions'));
-    }
+    //     return view('admin.transactions.createrecur', compact('transactions', 'clients', 'descriptions'));
+    // }
 
-    public function storerecur(CreateTransactionRequest $request)
-    {
-
-
-        // this worked with storerecur() empty parenthesis
-        // $transactions = array(
-        //     array(
-        //         "id" => "5",
-        //         "type" => "1",
-        //         "description1" => "1",
-        //         "amount1" => "333",
-        //     ),
-
-        //     array(
-        //         "id" => "9",
-        //         "type" => "1",
-        //         "description1" => "1",
-        //         "amount1" => "222",
-        //     )
-
-        // );
-        $transactions = Transaction::all();
-
-        $transaction["id"] = $request->id;
-        $transaction["type"] = $request->type;
-        $transaction["description1"] = $request->description1;
-        $transaction["amount1"] = $request->retainer;
+    // public function storerecur(CreateTransactionRequest $request)
+    // {
 
 
-        foreach ($transactions as $transaction) {
-            $values = new Transaction();
-            $values->client_id = $transaction["id"];
-            $values->type = $transaction["type"];
-            $values->description1 = $transaction['description1'];
-            $values->amount1 = $transaction['amount1'];
-            $values->save();
-        }
+    // this worked with storerecur() empty parenthesis
+    // $transactions = array(
+    //     array(
+    //         "id" => "5",
+    //         "type" => "1",
+    //         "description1" => "1",
+    //         "amount1" => "333",
+    //     ),
 
-        // users is name.  NOT url
-        return redirect('transactions');
-    }
+    //     array(
+    //         "id" => "9",
+    //         "type" => "1",
+    //         "description1" => "1",
+    //         "amount1" => "222",
+    //     )
+
+    // );
+    // $transactions = Transaction::all();
+
+    // $transaction["id"] = $request->id;
+    // $transaction["type"] = $request->type;
+    // $transaction["description1"] = $request->description1;
+    // $transaction["amount1"] = $request->retainer;
+
+
+    // foreach ($transactions as $transaction) {
+    //     $values = new Transaction();
+    //     $values->client_id = $transaction["id"];
+    //     $values->type = $transaction["type"];
+    //     $values->description1 = $transaction['description1'];
+    //     $values->amount1 = $transaction['amount1'];
+    //     $values->save();
+    // }
+
+    // // users is name.  NOT url
+    // return redirect('transactions');
+    // }
 
 
     // RECURRING FUNCTION END ******************************************

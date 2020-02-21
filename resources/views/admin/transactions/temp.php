@@ -24,3 +24,28 @@
     <div class="form-group">
       {!! Form::submit('Create Client', ['class'=>'btn btn-primary col-sm-6']) !!}
     </div> -->
+
+
+<div class="form-group">
+  <input type="text" name="id[]" value="{{$client->id}}" class="form-control">
+</div>
+
+<div class="form-group">
+  <input type="text" name="retainer[]" value="{{$client->retainer}}" class="form-control">
+</div>
+
+<!-- <div class="form-group">
+      {!! Form::label('id', 'Id:') !!}
+      {!! Form::text('id[]', null, ['class'=>'form-control'])!!}
+    </div>
+    <div class="form-group">
+      {!! Form::label('retainer', 'Retainer:') !!}
+      {!! Form::text('retainer[]', null, ['class'=>'form-control'])!!}
+    </div> -->
+
+foreach ($transactions as $transaction) {
+$values = new Transaction();
+$values->client_id = $client["id"];
+$values->amount1 = $client["retainer"];
+$values->save();
+}
