@@ -21,13 +21,13 @@ class ClientsController extends Controller
     public function index()
     {
         //
-
+        $transactions = Transaction::all();
 
         $clients = Client::all();
 
         $clients = $clients->sortBy('name');
 
-        return view('admin.clients.index', compact('clients'));
+        return view('admin.clients.index', compact('clients', 'transactions'));
 
         // return view('admin.clients.index', [
         //     'clients' => $clients,
@@ -86,6 +86,7 @@ class ClientsController extends Controller
 
         foreach ($request->id as $index => $id) {
             $transactions = new Transaction();
+            $transactions->created_at = $request->date;
             $transactions->client_id = $request->id[$index];
             $transactions->amount1 = $request->retainer[$index];
             $transactions->save();

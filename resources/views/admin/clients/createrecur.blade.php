@@ -13,13 +13,18 @@
     @if($clients)
 
     <div class="form-group">
+      <input type="date" value="date" name="date">
+    </div>
+
+    <div class="form-group">
       <input type="submit" class="btn btn-success">
     </div>
+
 
     @foreach ($clients as $client)
 
     @if($client->active == 1)
-
+    @if($client->recurring == 1)
 
     <div class="form-group">
       <input type="text" name="id[]" value="{{$client->id}}" class="form-control">
@@ -30,7 +35,7 @@
     </div>
 
     @endif
-
+    @endif
     @endforeach
 
 

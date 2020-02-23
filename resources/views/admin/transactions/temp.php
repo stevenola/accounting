@@ -48,4 +48,8 @@ $values = new Transaction();
 $values->client_id = $client["id"];
 $values->amount1 = $client["retainer"];
 $values->save();
+
+
 }
+
+<!-- <td>{{$transaction->created_at->format('M/d/Y')}}</td> -->

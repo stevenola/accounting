@@ -163,13 +163,13 @@ class TransactionsController extends Controller
         //
         {
             //
-
+            $clients = Client::all();
 
             $transactions = Transaction::all();
 
             $transactions = $transactions->sortByDesc('created_at');
 
-            return view('admin.clients.showclienttrans', compact('transactions'));
+            return view('admin.clients.showclienttrans', compact('transactions', 'clients'));
         }
     }
 }

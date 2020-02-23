@@ -34,8 +34,6 @@
 
     @if($transactions)
 
-
-
     @foreach($transactions as $transaction)
 
     @if($transaction->client_id == request()->id)

@@ -38,6 +38,7 @@
     <tr>
       <th>Trans No</th>
       <th>Client</th>
+      <th>Date</th>
       <th>Type</th>
       <th>Desc 1</th>
       <th>Amount 1</th>
@@ -57,9 +58,10 @@
 
     @foreach($transactions as $transaction)
     <tr>
+      <td><a href="{{route('transactions.edit', $transaction->id)}}">{{$transaction->id}}</a></td>
+      <td>{{$transaction->client->name}}</td>
 
-      <td>{{$transaction->id}}</td>
-      <td><a href="{{route('transactions.edit', $transaction->id)}}">{{$transaction->client->name}}</a></td>
+      <td>{{date('m-d-Y', strtotime($transaction->created_at))}}</td>
 
       <td>{{$transaction->type == 1 ? 'Invoice' : 'Deposit'}}</td>
       <td>{{$transaction->description->name}}</td>

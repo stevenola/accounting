@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+<!-- THIS PAGE IS CURRENTLY NOT USED ON THE WEBSITE -->
 @section('content')
 
 <div class="well">

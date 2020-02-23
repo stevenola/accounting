@@ -8,7 +8,7 @@ class Transaction extends Model
 {
     //
     protected $fillable = [
-        'client_id', 'type', 'description1', 'amount1', 'description2', 'amount2', 'notes', 'check_no',
+        'client_id', 'type', 'description1', 'amount1', 'description2', 'amount2', 'notes', 'check_no', 'created_at',
     ];
 
     public function client()
