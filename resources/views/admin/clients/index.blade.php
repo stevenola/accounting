@@ -34,8 +34,8 @@
       <th>Recurring</th>
       <th>Print</th>
       <th>Active</th>
-      <th>In State</th>
       <th>Consultant</th>
+      <th>In State</th>
 
 
     </tr>
@@ -54,8 +54,9 @@
       <td>{{$client->recurring == 1 ? 'Recurring' : 'No'}}</td>
       <td>{{$client->print == 1 ? 'Print' : 'No'}}</td>
       <td>{{$client->active == 1 ? 'Active' : 'Not Active'}}</td>
-      <td>{{$client->in_state == 1 ? 'In State' : 'Out of State'}}</td>
       <td>{{$client->user->name}}</td>
+      <td>{{$client->in_state == 1 ? 'In State' : 'Out of State'}}</td>
+
 
 
     </tr>

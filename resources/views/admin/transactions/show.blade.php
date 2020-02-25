@@ -2,7 +2,7 @@
 
 
 
-<div class="container mt-5">
+<div style="margin-bottom: 550px" class="container mt-5">
 
   <div class="row">
 
@@ -22,7 +22,7 @@
     <div class="col-md-5">
 
     </div>
-    <div class="border border-dark col-md-3 h-50">
+    <div style="background-color:lightgrey" class="border border-dark col-md-3 h-50">
       <div class="pt-2 pb-3">
         <h4><b>Date::</b></h4>
       </div>
@@ -70,7 +70,7 @@
   <br>
   <br>
 
-  <div class="row">
+  <div style="background-color:lightgrey" class="row">
     <div class="border border-dark col-md-9">
       <div class="pt-3 pb-3">
         <h4><b>Item</b></h4>
@@ -136,6 +136,7 @@
 
 </div>
 
+<!-- <br>
 <br>
 <br>
 <br>
@@ -158,22 +159,21 @@
 <br>
 <br>
 <br>
-<br>
-<br>
+<br> -->
 <footer>
   <div class="container justify-right">
     <div class="bottom-footer">
       <div class="row">
         <div class="col-md-9"></div>
 
-        <div class="border border-dark col-md-3">
+        <div style="background-color:lightgrey" class="border border-dark col-md-3">
           <div class="pt-2 pb-3">
-            <h4> <b>Payment due in month date of invoice</b>
+            <h4> <b>Payment due in month of invoice</b>
           </div>
           <div class="">
 
             <!-- <h4 class="">Total: {{$transaction->amount1}} + {{$transaction->amount2}}</h4> -->
-            <h4>${{$transaction->amount1 + $transaction->amount2}}</h4>
+            <h4>Total: ${{$transaction->amount1 + $transaction->amount2}}</h4>
           </div>
         </div>
       </div>

@@ -112,6 +112,8 @@ class ClientsController extends Controller
     public function show($id)
     {
         //
+
+
         return view('admin.clients.show');
     }
 

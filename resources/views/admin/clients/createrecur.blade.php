@@ -38,6 +38,7 @@
     @if($client->active == 1)
     @if($client->recurring == 1)
 
+
     <div class="form-group">
       <input type="text" name="id[]" value="{{$client->id}}" class="form-control">
     </div>
@@ -45,6 +46,7 @@
     <div class="form-group">
       <input type="text" name="retainer[]" value="{{$client->retainer}}" class="form-control">
     </div>
+
 
     @endif
     @endif
