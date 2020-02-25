@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="well">
-  <h1>Add Client</h1>
+
 
   @if(count($errors)> 0)
   <div class="alert alert-danger">
@@ -21,7 +21,9 @@
   @endif
 
 
-  <div class="container">
+  <div class="container col-sm-3">
+    <h1>Add Client</h1>
+    <br>
 
     {!! Form::open(['method'=>'POST', 'action'=> 'ClientsController@store']) !!}
     {{csrf_field()}}
@@ -83,7 +85,7 @@
     </div>
 
     <div class="form-group">
-      {!! Form::submit('Create Client', ['class'=>'btn btn-primary col-sm-6']) !!}
+      {!! Form::submit('Create Client', ['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}

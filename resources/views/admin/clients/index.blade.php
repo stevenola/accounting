@@ -3,12 +3,12 @@
 @section('content')
 
 
-<h1>Clients</h1>
+<h1 class="ml-2">Clients</h1>
 
-
+<br>
 {!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@create']]) !!}
 <div class="form-group">
-  {!! Form::submit('Add Client', ['class'=>'btn btn-primary col-sm-2']) !!}
+  {!! Form::submit('Add Client', ['class'=>'btn btn-primary ml-2']) !!}
 </div>
 {!! Form::close() !!}
 

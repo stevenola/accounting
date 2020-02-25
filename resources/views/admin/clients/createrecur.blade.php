@@ -3,17 +3,29 @@
 @section('content')
 
 <div class="well">
-  <h1>Recurring Invoice</h1>
 
-  <div class="container">
+
+  <div class="container col-md-3">
+
+    <?php
+
+    $month = date('m');
+    $day = date('d');
+    $year = date('Y');
+
+    $today = $year . '-' . $month . '-' . $day;
+    ?>
 
     {!! Form::open( ['method'=>'GET', 'action'=> 'ClientsController@storerecur']) !!}
     {{csrf_field()}}
 
     @if($clients)
 
+    <h1>Recurring Invoices</h1>
+    <br>
+
     <div class="form-group">
-      <input type="date" value="date" name="date">
+      <input type="date" value="<?php echo $today; ?>" name="date">
     </div>
 
     <div class="form-group">

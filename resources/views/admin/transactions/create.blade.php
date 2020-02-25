@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="well">
-  <h1>Create Invoice</h1>
+
 
   @if(count($errors)> 0)
   <div class="alert alert-danger">
@@ -20,16 +20,32 @@
 
   @endif
 
-  <div class="container">
+  <?php
 
+  $month = date('m');
+  $day = date('d');
+  $year = date('Y');
+
+  $today = $year . '-' . $month . '-' . $day;
+  ?>
+
+
+  <div class="container col-md-3">
+    <h1>Create Invoice</h1>
+    <br>
     {!! Form::open(['method'=>'POST', 'action'=> 'TransactionsController@store']) !!}
     {{csrf_field()}}
 
 
     <div class="form-group">
+      <input type="date" value="<?php echo $today; ?>" name="created_at">
+    </div>
+
+
+    <div class="form-group">
       {!! Form::label('client_id', 'Clients:') !!}
       <?php asort($clients); ?>
-      
+
       {!! Form::select('client_id', $clients, null, ['placeholder' => 'choose a client'],['class'=>'form-control'])!!}
 
     </div>
@@ -67,14 +83,14 @@
     </div>
 
     <div class="form-group">
-      {!! Form::label('check_no', 'Check No:') !!}
-      {!! Form::text('retainer', null, ['class'=>'form-control'])!!}
+      <!-- {!! Form::label('check_no', 'Check No:') !!} -->
+      {!! Form::hidden('retainer', null, ['class'=>'form-control'])!!}
     </div>
 
 
 
     <div class="form-group">
-      {!! Form::submit('Create Client', ['class'=>'btn btn-primary col-sm-6']) !!}
+      {!! Form::submit('Create Client', ['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}

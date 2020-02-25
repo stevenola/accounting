@@ -39,9 +39,9 @@
     @if($transaction->client_id == request()->id)
     <tr>
 
-      <td>{{$transaction->id}}</td>
-      <td><a href="{{route('transactions.edit', $transaction->id)}}">{{$transaction->client->name}}</a></td>
 
+      <td><a href="{{route('transactions.edit', $transaction->id)}}">{{$transaction->id}}</a></td>
+      <td>{{$transaction->client->name}}</td>
       <td>{{$transaction->type == 1 ? 'Invoice' : 'Deposit'}}</td>
       <td>{{$transaction->description->name}}</td>
       <td>{{$transaction->amount1}}</td>

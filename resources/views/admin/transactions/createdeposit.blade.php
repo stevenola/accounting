@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="well">
-  <h1>Make Deposit</h1>
+
 
   @if(count($errors)> 0)
   <div class="alert alert-danger">
@@ -20,7 +20,9 @@
 
   @endif
 
-  <div class="container">
+  <div class="container col-md-3">
+    <h1>Make Deposit</h1>
+    <br>
 
     {!! Form::open(['method'=>'POST', 'action'=> 'TransactionsController@store']) !!}
     {{csrf_field()}}
@@ -31,7 +33,7 @@
       <?php asort($clients); ?>
       {!! Form::select('client_id', $clients, null, ['placeholder' => 'choose a client'],['class'=>'form-control'])!!}
 
-
+      <br>
       <div class="form-group">
         {!! Form::label('check_no', 'Check No:') !!}
         {!! Form::text('check_no', null, ['class'=>'form-control'])!!}
@@ -55,7 +57,7 @@
 
 
       <div class="form-group">
-        {!! Form::submit('Record Deposit', ['class'=>'btn btn-primary col-sm-6']) !!}
+        {!! Form::submit('Record Deposit', ['class'=>'btn btn-primary']) !!}
       </div>
 
       {!! Form::close() !!}

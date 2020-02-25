@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container col-sm-3">
   <!-- 
   <form method="GET" action="/generatePDF58" enctype="multipart/form-data">
 

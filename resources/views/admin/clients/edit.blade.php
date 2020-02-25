@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container col-sm-3">
   <h1>Edit Clients</h1>
 
   {!! Form::model($client,['method'=>'PATCH', 'action'=> ['ClientsController@update', $client->id], 'files'=>true]) !!}
@@ -62,7 +62,7 @@
   </div>
 
   <div class="form-group">
-    {!! Form::submit('Update Client', ['class'=>'btn btn-primary col-sm-6']) !!}
+    {!! Form::submit('Update Client', ['class'=>'btn btn-primary']) !!}
   </div>
 
   {!! Form::close() !!}
@@ -72,7 +72,7 @@
   {!! Form::open(['method'=>'DELETE', 'action'=> ['ClientsController@destroy', $client->id]]) !!}
 
   <div class="form-group">
-    {!! Form::submit('Delete Client', ['class'=>'btn btn-danger col-sm-6']) !!}
+    {!! Form::submit('Delete Client', ['class'=>'btn btn-danger']) !!}
   </div>
 
   {!! Form::close() !!}

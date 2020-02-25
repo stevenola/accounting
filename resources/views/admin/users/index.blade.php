@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Users</h1>
+<h1 class="ml-2">Users</h1>
 
 
 
@@ -13,7 +13,7 @@
 
 {!! Form::open(['method'=>'GET', 'action'=> ['UsersController@create']]) !!}
 <div class="form-group">
-  {!! Form::submit('Add User', ['class'=>'btn btn-primary col-sm-2']) !!}
+  {!! Form::submit('Add User', ['class'=>'btn btn-primary ml-2']) !!}
 </div>
 {!! Form::close() !!}
 

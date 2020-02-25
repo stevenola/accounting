@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="well">
-  <h1>Create Users</h1>
+  
 
   @if(count($errors)> 0)
   <div class="alert alert-danger">
@@ -21,9 +21,10 @@
   @endif
 
 
-  <div class="container">
+  <div class="container col-sm-3">
 
-
+  <h1>Create Users</h1>
+  <br>
 
     {!! Form::open(['method'=>'POST', 'action'=> 'UsersController@store']) !!}
     {{csrf_field()}}

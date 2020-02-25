@@ -172,4 +172,24 @@ class TransactionsController extends Controller
             return view('admin.clients.showclienttrans', compact('transactions', 'clients'));
         }
     }
+
+
+    public function printrecur(Request $request)
+    {
+        //
+        {
+            //
+            $clients = Client::all();
+
+            $transactions = Transaction::all();
+
+            // $date = $request->get('date');
+            $date = date('Y-m-d', strtotime($request['date']));
+
+            return view('admin.transactions.printrecur', compact('transactions', 'clients', 'date'));
+        }
+    }
 }
+
+   // $date = $request->date;
+            // $request->input('date')
