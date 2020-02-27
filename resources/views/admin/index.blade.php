@@ -82,6 +82,34 @@ $novtotal = (($transactions->where('type', 0)->whereBetween('created_at', [$novb
 
 $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decbeg, $decend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$decbegly, $decendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$decbegly, $decendly])->sum('amount1') * -1) * 100;
 
+// Running total % change
+
+
+$janruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $janend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1) * 100;
+
+$februntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $febend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $febendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $febendly])->sum('amount1') * -1) * 100;
+
+$marruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $marend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $marendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $marendly])->sum('amount1') * -1) * 100;
+
+$aprruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $aprend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $aprendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $aprendly])->sum('amount1') * -1) * 100;
+
+$mayruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $mayend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $mayendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $mayendly])->sum('amount1') * -1) * 100;
+
+$junruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $junend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $junendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $junendly])->sum('amount1') * -1) * 100;
+
+$julruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $julend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $julendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $julendly])->sum('amount1') * -1) * 100;
+
+$augruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $augend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $augendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $augendly])->sum('amount1') * -1) * 100;
+
+$sepruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $sepend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $sependly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $sependly])->sum('amount1') * -1) * 100;
+
+$octruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $octend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $octendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $octendly])->sum('amount1') * -1) * 100;
+
+$novruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $novend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $novendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $novendly])->sum('amount1') * -1) * 100;
+
+$decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $decend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $decendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $decendly])->sum('amount1') * -1) * 100;
+
+
 ?>
 
 
@@ -94,7 +122,10 @@ $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decb
         <th>Month</th>
         <th>TY</th>
         <th>LY</th>
-        <th>+/- %</th>
+        <th>% +/-</th>
+        <th>YTD</th>
+        <th>LYTD</th>
+        <th>% +/-</th>
       </tr>
     </thead>
 
@@ -105,6 +136,11 @@ $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decb
 
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $janendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($jantotal,1)}}%</td>
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $janend])->sum('amount1')*-1}}</td>
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $janendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($janruntotal,1)}}%</td>
       </tr>
       <tr>
         <td>Feb</td>
@@ -112,36 +148,97 @@ $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decb
 
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$febbegly, $febendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($febtotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$febbeg, $febend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $febend])->sum('amount1')*-1}}</td>
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $febendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($februntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Mar</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$marbeg, $marend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$marbegly, $marendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($martotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$marbeg, $marend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $marend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $marendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($marruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
+
         <td>Apr</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$aprbeg, $aprend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$aprbegly, $aprendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($aprtotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$aprbeg, $aprend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $aprend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $aprendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($aprruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>May</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$maybeg, $mayend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$maybegly, $mayendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($maytotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$maybeg, $mayend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $mayend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $mayendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($mayruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Jun</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$junbeg, $junend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $janendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($juntotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$junbeg, $junend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $junend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $junendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($junruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       <tr>
         <td>Jul</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$julbeg, $julend])->sum('amount1')*-1}}</td>
 
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$julbegly, $julendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($jultotal,1)}}%</td>
+
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$julbeg, $julend])->sum('amount1')*-1) > 0)
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $julend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $julendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($julruntotal,1)}}%</td>
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Aug</td>
@@ -149,23 +246,65 @@ $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decb
 
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$augbegly, $augendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($augtotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$augbeg, $augend])->sum('amount1')*-1) > 0)
+
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $augend])->sum('amount1')*-1}}</td>
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $augendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($augruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       <tr>
         <td>Sep</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$sepbeg, $sepend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$sepbegly, $sependly])->sum('amount1')*-1}}</td>
         <td>{{number_format($septotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$sepbeg, $sepend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $sepend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $sependly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($sepruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Oct</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$octbeg, $octend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$octbegly, $octendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($octtotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$octbeg, $octend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $octend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $octendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($octruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Nov</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$novbeg, $novend])->sum('amount1')*-1}}</td>
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$novbegly, $novendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($novtotal,1)}}%</td>
+
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$novbeg, $novend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $novend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $novendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($novruntotal,1)}}%</td>
+
+        @else
+
+        @endif
       </tr>
       <tr>
         <td>Dec</td>
@@ -173,14 +312,17 @@ $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decb
         <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$decbegly, $decendly])->sum('amount1')*-1}}</td>
         <td>{{number_format($dectotal,1)}}%</td>
 
-      </tr>
-      <tr class="text-success">
-        <td>Total</td>
-        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $junend])->sum('amount1')*-1}}</td>
-        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $junendly])->sum('amount1')*-1}}</td>
+        @if(($transactions->where('type', 0)->whereBetween('created_at',[$decbeg, $decend])->sum('amount1')*-1) > 0)
+
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbeg, $decend])->sum('amount1')*-1}}</td>
+        <td>{{$transactions->where('type', 0)->whereBetween('created_at',[$janbegly, $decendly])->sum('amount1')*-1}}</td>
+        <td>{{number_format($decruntotal,1)}}%</td>
 
 
+        @endif
+
       </tr>
+
     </tbody>
 
   </table>
