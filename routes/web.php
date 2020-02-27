@@ -25,10 +25,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin', function () {
-
-    return view('admin.index');
-});
+Route::get('admin', 'AdminController@index');
 
 // The middleware web route wraps around route for validation messages
 Route::group(['middleware' => 'web'], function () {

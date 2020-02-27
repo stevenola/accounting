@@ -38,7 +38,9 @@
         <a class="navbar-brand" href="{{ url('/') }}">
           Home
         </a>
-
+        <a class="navbar-brand" href="{{ url('admin') }}">
+          Dashboard
+        </a>
         <a class="navbar-brand" href="{{ url('clients') }}">
           Clients
         </a>
@@ -77,10 +79,11 @@
 
 
 
-
-
-    @yield('content')
-
+    <div id="page-container">
+      <div id="page-content-wrap">
+        @yield('content')
+      </div>
+    </div>
     @yield('footer')
 
 
