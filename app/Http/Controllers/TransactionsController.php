@@ -54,8 +54,9 @@ class TransactionsController extends Controller
 
 
 
-        return view('admin.transactions.createdeposit', compact('clients'));
+        return view('admin.transactions.createdeposit', compact('clients', 'descriptions'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +78,14 @@ class TransactionsController extends Controller
         Transaction::create($input);
 
         // users is name.  NOT url
-        return redirect('transactions');
+        if ($input['type'] == 1) {
+            return redirect('transactions');
+        } else {
+            $clients = Client::pluck('name', 'id')->all();
+
+            $descriptions = Description::pluck('name', 'id')->all();
+            return view('admin.transactions.createdeposit', compact('clients', 'descriptions'));
+        }
     }
 
     /**
@@ -167,7 +175,7 @@ class TransactionsController extends Controller
             $clients = Client::pluck('name', 'id')->all();
 
 
-            
+
 
             $transactions = Transaction::all();
 

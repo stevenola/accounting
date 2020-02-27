@@ -38,14 +38,19 @@
         <a class="navbar-brand" href="{{ url('/') }}">
           Home
         </a>
-        <a class="navbar-brand" href="{{ url('users') }}">
-          Users
-        </a>
+
         <a class="navbar-brand" href="{{ url('clients') }}">
           Clients
         </a>
         <a class="navbar-brand" href="{{ url('transactions') }}">
           Transactions
+        </a>
+        </a>
+        <a class="navbar-brand" href="{{ url('expenses') }}">
+          Expenses
+        </a>
+        <a class="navbar-brand" href="{{ url('users') }}">
+          Users
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

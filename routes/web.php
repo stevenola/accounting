@@ -52,11 +52,16 @@ Route::get('showclienttrans/{id}', 'TransactionsController@showclienttrans');
 
 Route::get('createdeposit', 'TransactionsController@createdeposit');
 
+
 Route::get('printrecur', 'TransactionsController@printrecur');
 
 
 Route::get('createrecur', 'ClientsController@createrecur');
 Route::get('storerecur', 'ClientsController@storerecur');
+
+
+Route::resource('expenses', 'ExpensesController');
+
 
 
 Route::get('htmlpdf58', 'PDFController@htmlPDF58');

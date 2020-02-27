@@ -28,10 +28,6 @@ class ClientsController extends Controller
         $clients = $clients->sortBy('name');
 
         return view('admin.clients.index', compact('clients', 'transactions'));
-
-        // return view('admin.clients.index', [
-        //     'clients' => $clients,
-        // ]);
     }
 
     /**

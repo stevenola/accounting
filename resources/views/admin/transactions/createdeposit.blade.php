@@ -20,12 +20,25 @@
 
   @endif
 
+  <?php
+
+  $month = date('m');
+  $day = date('d');
+  $year = date('Y');
+
+  $today = $year . '-' . $month . '-' . $day;
+  ?>
+
   <div class="container col-md-3">
     <h1>Make Deposit</h1>
     <br>
 
     {!! Form::open(['method'=>'POST', 'action'=> 'TransactionsController@store']) !!}
     {{csrf_field()}}
+
+    <div class="form-group">
+      <input type="date" value="<?php echo $today; ?>" name="created_at">
+    </div>
 
 
     <div class="form-group">
@@ -50,15 +63,25 @@
         {!! Form::text('notes', null, ['class'=>'form-control'])!!}
       </div>
 
+      <div style="margin-bottom: 550px" class="form-group">
+        {!! Form::submit('Record Deposit', ['class'=>'btn btn-primary']) !!}
+      </div>
+
+
+
+
       <div class="form-group">
         {!! Form::label('type', 'type:') !!}
         {!! Form::select('type',array(0 => 'Deposit',1 => 'Invoice'), 0, ['class'=>'form-control'])!!}
       </div>
 
-
       <div class="form-group">
-        {!! Form::submit('Record Deposit', ['class'=>'btn btn-primary']) !!}
+        {!! Form::label('description1', 'Desc 1:') !!}
+        {!! Form::select('description1', $descriptions, 3, ['class'=>'form-control'])!!}
+
       </div>
+
+
 
       {!! Form::close() !!}
 
