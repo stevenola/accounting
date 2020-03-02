@@ -15,7 +15,7 @@ $today = $year . '-' . $month . '-' . $day;
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <div class="row">
         {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createdeposit']]) !!}
         <div class="form-group">
@@ -33,7 +33,7 @@ $today = $year . '-' . $month . '-' . $day;
 
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="row">
         {!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@createrecur']]) !!}
         <div class="form-group">
@@ -45,7 +45,7 @@ $today = $year . '-' . $month . '-' . $day;
 
         {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@printrecur']]) !!}
         <div class="form-group">
-          {!! Form::submit('Print', ['class'=>'btn btn-primary mr-2']) !!}
+          {!! Form::submit('Print Recurring', ['class'=>'btn btn-primary mr-2']) !!}
         </div>
 
         <div class="form-group">

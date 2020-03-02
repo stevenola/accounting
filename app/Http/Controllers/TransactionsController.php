@@ -204,6 +204,3 @@ class TransactionsController extends Controller
         }
     }
 }
-
-   // $date = $request->date;
-            // $request->input('date')

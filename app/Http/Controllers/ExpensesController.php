@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExpenseRequest;
 use Illuminate\Http\Request;
 use App\expense;
 use App\expensename;
@@ -19,6 +20,8 @@ class ExpensesController extends Controller
         $expensenames = expensename::all();
 
         $expenses = expense::all();
+
+        $expenses = $expenses->sortByDesc('created_at');
 
         return view('admin.expenses.index', compact('expenses', 'expensenames'));
     }
@@ -42,7 +45,7 @@ class ExpensesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExpenseRequest $request)
     {
         //
         $input = $request->all();
@@ -88,7 +91,7 @@ class ExpensesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExpenseRequest $request, $id)
     {
         //
         $expense = expense::findOrFail($id);
