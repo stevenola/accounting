@@ -20,6 +20,14 @@
 
   @endif
 
+  <?php
+
+$month = date('m');
+$day = date('d');
+$year = date('Y');
+
+$today = $year . '-' . $month . '-' . $day;
+?>
 
   <div class="container col-sm-3">
 
@@ -28,6 +36,10 @@
 
     {!! Form::open(['method'=>'POST', 'action'=> 'ExpensesController@store']) !!}
     {{csrf_field()}}
+
+    <div class="form-group">
+      <input type="date" value="<?php echo $today; ?>" name="created_at">
+    </div>
 
     <div class="form-group">
       {!! Form::label('name', 'Name:') !!}

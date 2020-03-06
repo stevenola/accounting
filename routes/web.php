@@ -16,6 +16,7 @@
 // });
 
 use App\Http\Controllers\TransactionsController;
+use Carbon\Carbon;
 
 Route::get('/', function () {
 
@@ -29,9 +30,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
 Route::get('admin', 'AdminController@index')->middleware('role');
-
+Route::get('adminpandl', 'AdminController@adminpandl')->middleware('role');
 
 
 

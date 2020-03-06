@@ -24,6 +24,11 @@
 
 
   <div class="form-group">
+    {!! Form::label('created_at', 'Date Created:') !!}
+    {!! Form::date('created_at', $expense->created_at, ['class'=>'form-control'])!!}
+  </div>
+
+  <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::select('name', $expensenames, null, ['class'=>'form-control'])!!}
   </div>

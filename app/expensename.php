@@ -11,5 +11,10 @@ class expensename extends Model
         'id', 'name',
     ];
 
+    public function expense()
+    {
+        return $this->belongsTo('App\expense', 'id');
+    }
+
     public $sortable = ['name'];
 }

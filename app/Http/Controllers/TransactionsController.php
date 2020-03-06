@@ -197,7 +197,7 @@ class TransactionsController extends Controller
 
             $transactions = Transaction::all();
 
-            // $date = $request->get('date');
+          
             $date = date('Y-m-d', strtotime($request['date']));
 
             return view('admin.transactions.printrecur', compact('transactions', 'clients', 'date'));
