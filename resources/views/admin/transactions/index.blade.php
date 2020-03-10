@@ -64,7 +64,7 @@ $today = $year . '-' . $month . '-' . $day;
 <br>
 
 
-<table class="table">
+<table class="table table-sm">
   <thead>
     <tr>
       <th>Trans No</th>
@@ -106,10 +106,17 @@ $today = $year . '-' . $month . '-' . $day;
 
     </tr>
 
-
     @endforeach
     @endif
 
   </tbody>
 </table>
+
+<div class="col-12 d-flex justify-content-center">
+  {{$transactions->links()}}
+</div>
+
+
+
+
 @endsection

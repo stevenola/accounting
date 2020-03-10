@@ -23,9 +23,11 @@ class ClientsController extends Controller
         //
         $transactions = Transaction::all();
 
-        $clients = Client::all();
+        $clients = Client::paginate(12);
 
-        $clients = $clients->sortBy('name');
+        // $clients = Client::all();
+
+        // $clients = $clients->sortBy('name');
 
         return view('admin.clients.index', compact('clients', 'transactions'));
     }

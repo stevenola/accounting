@@ -51,6 +51,9 @@
         <a class="navbar-brand" href="{{ url('expenses') }}">
           Expenses
         </a>
+        <a class="navbar-brand" href="{{ url('cashflows') }}">
+          Cash Flow
+        </a>
         <a class="navbar-brand" href="{{ url('users') }}">
           Users
         </a>

@@ -4,65 +4,72 @@
 
 <?php
 
+use Carbon\Carbon;
 
-$month = date('m');
-$day = date('d');
-$year = date('Y');
+if ($thisyear == " ") {
+  $year = Carbon::now()->year;
+} else {
+  $year = $thisyear;
+}
 
-$today = $year . '-' . $month . '-' . $day;
+$month = 1;
+$day = 1;
+$hour = 0;
+$minute = 0;
+$second = 0;
 
 
-// Current Year
-$janbeg = date('2020-01-01');
-$janend = date('2020-01-31');
-$febbeg = date('2020-02-01');
-$febend = date('2020-02-29');
-$marbeg = date('2020-03-01');
-$marend = date('2020-03-31');
-$aprbeg = date('2020-04-01');
-$aprend = date('2020-04-30');
-$maybeg = date('2020-05-01');
-$mayend = date('2020-05-31');
-$junbeg = date('2020-06-01');
-$junend = date('2020-06-30');
-$julbeg = date('2020-07-01');
-$julend = date('2020-07-31');
-$augbeg = date('2020-08-01');
-$augend = date('2020-08-31');
-$sepbeg = date('2020-09-01');
-$sepend = date('2020-09-30');
-$octbeg = date('2020-10-01');
-$octend = date('2020-10-31');
-$novbeg = date('2020-11-01');
-$novend = date('2020-11-30');
-$decbeg = date('2020-12-01');
-$decend = date('2020-12-31');
+$janbeg = Carbon::create($year, $month, $day, $hour, $minute, $second);
+$janend = Carbon::create($year, $month, $day, $hour, $minute, $second)->endOfMonth();
+$febbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1);
+$febend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1)->endOfMonth();
+$marbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(2);
+$marend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(2)->endOfMonth();
+$aprbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(3);
+$aprend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(3)->endOfMonth();
+$maybeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(4);
+$mayend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(4)->endOfMonth();
+$junbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(5);
+$junend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(5)->endOfMonth();
+$julbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(6);
+$julend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(6)->endOfMonth();
+$augbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(7);
+$augend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(7)->endOfMonth();
+$sepbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(8);
+$sepend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(8)->endOfMonth();
+$octbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(9);
+$octend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(9)->endOfMonth();
+$novbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(10);
+$novend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(10)->endOfMonth();
+$decbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11);
+$decend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->endOfMonth();
 
 // Last Year
-$janbegly = date('2019-01-01');
-$janendly = date('2019-01-31');
-$febbegly = date('2019-02-01');
-$febendly = date('2019-02-28');
-$marbegly = date('2019-03-01');
-$marendly = date('2019-03-31');
-$aprbegly = date('2019-04-01');
-$aprendly = date('2019-04-30');
-$maybegly = date('2019-05-01');
-$mayendly = date('2019-05-31');
-$junbegly = date('2019-06-01');
-$junendly = date('2019-06-30');
-$julbegly = date('2019-07-01');
-$julendly = date('2019-07-31');
-$augbegly = date('2019-08-01');
-$augendly = date('2019-08-31');
-$sepbegly = date('2019-09-01');
-$sependly = date('2019-09-30');
-$octbegly = date('2019-10-01');
-$octendly = date('2019-10-31');
-$novbegly = date('2019-11-01');
-$novendly = date('2019-11-30');
-$decbegly = date('2019-12-01');
-$decendly = date('2019-12-31');
+// $janbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addYears(-1);
+$janbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addYears(-1);
+$janendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->endOfMonth()->addYears(-1);
+$febbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1)->addYears(-1);
+$febendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1)->endOfMonth()->addYears(-1);
+$marbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(2)->addYears(-1);
+$marendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(2)->endOfMonth()->addYears(-1);
+$aprbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(3)->addYears(-1);
+$aprendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(3)->endOfMonth()->addYears(-1);
+$maybegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(4)->addYears(-1);
+$mayendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(4)->endOfMonth()->addYears(-1);
+$junbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(5)->addYears(-1);
+$junendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(5)->endOfMonth()->addYears(-1);
+$julbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(6)->addYears(-1);
+$julendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(6)->endOfMonth()->addYears(-1);
+$augbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(7)->addYears(-1);
+$augendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(7)->endOfMonth()->addYears(-1);
+$sepbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(8)->addYears(-1);
+$sependly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(8)->endOfMonth()->addYears(-1);
+$octbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(9)->addYears(-1);
+$octendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(9)->endOfMonth()->addYears(-1);
+$novbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(10)->addYears(-1);
+$novendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(10)->endOfMonth()->addYears(-1);
+$decbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->addYears(-1);
+$decendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->endOfMonth()->addYears(-1);
 
 // Calculate % change
 
@@ -121,12 +128,28 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 ?>
 
 
+
 <div class="container ">
+
   <div class="row">
-    <div class="col-md-3"> </div>
-    <div class="col-md-6">
+    {!! Form::open(['method'=>'GET', 'action'=> ['AdminController@index']]) !!}
+    <div class="form-group pl-3">
+
+      {!! Form::submit('Update Year', ['class'=>'btn btn-primary btn-sm mt-5']) !!}
+    </div>
+
+    <div class="form-group pl-3">
+      <input type="text" value="{{$year}}" name="thisyear">
+
+    </div>
+
+    {!! Form::close() !!}
+  </div>
+  <div class="row pt-3">
+
+    <div class="col-md-6 text-info">
       <h1>Revenue</h1>
-      <table class="table">
+      <table class="table table-sm">
         <thead>
           <tr>
             <th>Month</th>
@@ -337,28 +360,52 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 
       </table>
     </div>
-    <div class="col-md-3">
+
+    <div class="col-md-6 text-success">
       <div class="row">
-        {!! Form::open(['method'=>'GET', 'action'=> ['AdminController@adminpandl']]) !!}
-        <div class="form-group pl-3">
-          {!! Form::submit('P and L Report', ['class'=>'btn btn-primary mr-2 ml-2']) !!}
-        </div>
+        <h1>Cash Balances</h1>
 
-
-        <div class="form-group pl-3">
-          <input type="date" value="<?php echo $today; ?>" name="begdate" class="mt-1">
-
-        </div>
-
-        <div class="form-group pl-3">
-          <input type="date" value="<?php echo $today; ?>" name="enddate" class="mt-1">
-
-        </div>
-
-        {!! Form::close() !!}
+        <h5 class="pl-3 pt-3">Initial Cash:</h5>
       </div>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>TY</th>
+            <th>LY</th>
+            <th>% +/-</th>
+            <th>YTD</th>
+            <th>LYTD</th>
+            <th>% +/-</th>
+          </tr>
+        </thead>
+        <tbody>
 
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    {!! Form::open(['method'=>'GET', 'action'=> ['AdminController@adminpandl']]) !!}
+    <div class="form-group pl-3">
+      {!! Form::submit('P and L Report', ['class'=>'btn btn-primary btn-sm mt-5']) !!}
     </div>
 
 
-    @endsection
+    <div class="form-group pl-3">
+      <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="begdate" class="mt-1">
+
+    </div>
+
+    <div class="form-group pl-3">
+      <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="enddate" class="mt-1">
+
+    </div>
+
+    {!! Form::close() !!}
+  </div>
+</div>
+
+
+@endsection

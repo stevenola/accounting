@@ -20,7 +20,7 @@
 
 
 
-  <table class="table">
+  <table class="table table-sm">
     <thead>
       <tr>
         <th>Date</th>
@@ -50,6 +50,10 @@
 
     </tbody>
   </table>
+</div>
+
+<div class="col-12 d-flex justify-content-center">
+  {{$expenses->links()}}
 </div>
 
 @endsection

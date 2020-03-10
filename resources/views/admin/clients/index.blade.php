@@ -12,19 +12,13 @@
 </div>
 {!! Form::close() !!}
 
-<!-- {!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@transsum']]) !!}
-<div class="form-group">
-  {!! Form::submit('Transaction Summary', ['class'=>'btn btn-primary col-sm-2']) !!}
-</div>
-{!! Form::close() !!} -->
-
 
 </div>
 
 <br>
 
 
-<table class="table">
+<table class="table table-sm">
   <thead>
     <tr>
 
@@ -67,6 +61,8 @@
   </tbody>
 </table>
 
-
+<div class="col-12 d-flex justify-content-center">
+  {{$clients->links()}}
+</div>
 
 @endsection

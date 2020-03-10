@@ -21,12 +21,13 @@ class AdminController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
 
         $transactions = Transaction::all();
+        $thisyear = $request['thisyear'];
 
-        return view('admin.index', compact('transactions'));
+        return view('admin.index', compact('transactions', 'thisyear'));
     }
 
     public function adminpandl(Request $request)

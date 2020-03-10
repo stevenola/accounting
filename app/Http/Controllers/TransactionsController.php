@@ -22,9 +22,10 @@ class TransactionsController extends Controller
         {
             //
 
-            $transactions = Transaction::all();
 
-            $transactions = $transactions->sortByDesc('created_at');
+            $transactions = Transaction::orderBy('created_at', 'Desc')->paginate(12);
+
+
 
             return view('admin.transactions.index', compact('transactions'));
         }
@@ -174,9 +175,6 @@ class TransactionsController extends Controller
             // $clients = Client::all();
             $clients = Client::pluck('name', 'id')->all();
 
-
-
-
             $transactions = Transaction::all();
 
             $transactions = $transactions->sortByDesc('created_at');
@@ -197,7 +195,7 @@ class TransactionsController extends Controller
 
             $transactions = Transaction::all();
 
-          
+
             $date = date('Y-m-d', strtotime($request['date']));
 
             return view('admin.transactions.printrecur', compact('transactions', 'clients', 'date'));

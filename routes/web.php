@@ -66,6 +66,7 @@ Route::get('storerecur', 'ClientsController@storerecur')->middleware('role');
 
 
 Route::resource('expenses', 'ExpensesController')->middleware('role');
+Route::resource('cashflows', 'CashflowsController')->middleware('role');
 
 
 
@@ -74,4 +75,26 @@ Route::get('generatePDF58', 'PDFController@generatePDF58')->middleware('role');
 
 Route::get('htmlPDF', function () {
     return view('/htmlPDF')->middleware('role');
+});
+
+
+// Testing Carbon
+Route::get('/carbon', function () {
+
+    $year = 2020;
+    $month = 1;
+    $day = 1;
+    $hour = 0;
+    $minute = 0;
+    $second = 0;
+
+    $carbon = new Carbon();
+    $lastofjan = new Carbon('first day of February this year', 'America/Chicago');
+    $augbeg = (new Carbon('first day of January this year'))->addMonths(7);
+
+    $janbeg = Carbon::createFromDate($year, $month, $day)->endOfMonth();
+    $decend = Carbon::create($year, $month, $day, $hour, $minute, $second);
+    $janbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addYears(-1);
+    $year = Carbon::now()->year;
+    echo $year;
 });

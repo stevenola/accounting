@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ExpenseRequest;
+use Carbon\Carbon;
+use App\Cashflow;
 use Illuminate\Http\Request;
-use App\expense;
-use App\expensename;
 
-class ExpensesController extends Controller
+class CashflowsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +16,13 @@ class ExpensesController extends Controller
     public function index()
     {
         //
-        $expensenames = expensename::all();
+        // $cashflows = Cashflow::all();
 
-        // $expenses = expense::all();
+        // $cashflows = $cashflows->sortBy('created_at');
 
-        // $expenses = $expenses->sortByDesc('created_at');
+        $cashflows = Cashflow::orderBy('created_at', 'Desc')->paginate(12);
 
-        $expenses = expense::orderBy('created_at', 'Desc')->paginate(12);
-
-        return view('admin.expenses.index', compact('expenses', 'expensenames'));
+        return view('admin.cashflow.index', compact('cashflows'));
     }
 
     /**
@@ -36,9 +33,7 @@ class ExpensesController extends Controller
     public function create()
     {
         //
-        $expensenames = expensename::pluck('name', 'id')->all();
-
-        return view('admin.expenses.create', compact('expensenames'));
+        return view('admin.cashflow.create');
     }
 
     /**
@@ -47,15 +42,14 @@ class ExpensesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExpenseRequest $request)
+    public function store(Request $request)
     {
         //
         $input = $request->all();
+        // 
+        Cashflow::create($input);
 
-        expense::create($input);
-
-        $expensenames = expensename::pluck('name', 'id')->all();
-        return view('admin.expenses.create', compact('expensenames'));
+        return redirect('cashflows');
     }
 
     /**
@@ -78,12 +72,11 @@ class ExpensesController extends Controller
     public function edit($id)
     {
         //
-        $expense = expense::findOrFail($id);
-
-        $expensenames = expensename::pluck('name', 'id')->all();
+        $cashflows = Cashflow::findOrFail($id);
 
 
-        return view('admin.expenses.edit', compact('expense', 'expensenames'));
+
+        return view('admin.cashflow.edit', compact('cashflows'));
     }
 
     /**
@@ -93,16 +86,16 @@ class ExpensesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExpenseRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $expense = expense::findOrFail($id);
+        $cashflows = Cashflow::findOrFail($id);
 
         $input = $request->all();
 
-        $expense->update($input);
+        $cashflows->update($input);
 
-        return redirect('expenses');
+        return redirect('cashflows');
     }
 
     /**
@@ -114,12 +107,12 @@ class ExpensesController extends Controller
     public function destroy($id)
     {
         //
-        $expense = expense::findOrFail($id);
+        $cashflows = Cashflow::findOrFail($id);
 
-        $expense->delete();
+        $cashflows->delete();
 
 
 
-        return redirect('expenses');
+        return redirect('cashflows');
     }
 }
