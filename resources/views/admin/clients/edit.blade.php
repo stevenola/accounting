@@ -72,7 +72,7 @@
   {!! Form::open(['method'=>'DELETE', 'action'=> ['ClientsController@destroy', $client->id]]) !!}
 
   <div class="form-group">
-    {!! Form::submit('Delete Client', ['class'=>'btn btn-danger']) !!}
+    {!! Form::submit('Delete Client', ['class'=>'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"]) !!}
   </div>
 
   {!! Form::close() !!}

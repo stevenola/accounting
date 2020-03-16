@@ -45,6 +45,11 @@ class CashflowsController extends Controller
     public function store(Request $request)
     {
         //
+        $data = request()->validate([
+            'amount' => 'required',
+            'created_at' => 'required'
+        ]);
+
         $input = $request->all();
         // 
         Cashflow::create($input);

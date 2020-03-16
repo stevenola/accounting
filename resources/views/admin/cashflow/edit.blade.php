@@ -44,7 +44,7 @@
   {!! Form::open(['method'=>'DELETE', 'action'=> ['CashflowsController@destroy', $cashflows->id]]) !!}
 
   <div class="form-group">
-    {!! Form::submit('Delete Cash Entry', ['class'=>'btn btn-danger']) !!}
+    {!! Form::submit('Delete Cash Entry', ['class'=>'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"]) !!}
   </div>
 
   {!! Form::close() !!}

@@ -23,13 +23,11 @@ class ClientsController extends Controller
         //
         $transactions = Transaction::all();
 
-        $clients = Client::paginate(12);
+        $inactiveclients = Client::orderBy('name', 'Asc')->where('active', 0)->get();
 
-        // $clients = Client::all();
+        $activeclients = Client::orderBy('name', 'Asc')->where('active', 1)->paginate(12);
 
-        // $clients = $clients->sortBy('name');
-
-        return view('admin.clients.index', compact('clients', 'transactions'));
+        return view('admin.clients.index', compact('activeclients', 'inactiveclients', 'transactions'));
     }
 
     /**
@@ -61,7 +59,7 @@ class ClientsController extends Controller
 
         Client::create($input);
 
-        // users is name.  NOT url
+        // clients is name.  NOT url
         return redirect('clients');
     }
 

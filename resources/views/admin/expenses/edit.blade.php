@@ -49,7 +49,7 @@
   {!! Form::open(['method'=>'DELETE', 'action'=> ['ExpensesController@destroy', $expense->id]]) !!}
 
   <div class="form-group">
-    {!! Form::submit('Delete Expense', ['class'=>'btn btn-danger']) !!}
+    {!! Form::submit('Delete Expense', ['class'=>'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"]) !!}
   </div>
 
   {!! Form::close() !!}

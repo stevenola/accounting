@@ -41,6 +41,8 @@ class TransactionsController extends Controller
         //
         $clients = Client::pluck('name', 'id')->all();
 
+
+
         $descriptions = Description::pluck('name', 'id')->all();
 
         return view('admin.transactions.create', compact('clients', 'descriptions'));

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+<!-- adds Dashboard as name of web sheet tab -->
+@section('title', 'Dashboard')
+
+
 @section('content')
 
 <?php
@@ -18,8 +22,8 @@ $hour = 0;
 $minute = 0;
 $second = 0;
 
-
-$janbeg = Carbon::create($year, $month, $day, $hour, $minute, $second);
+$janstart = Carbon::create($year, $month, $day, $hour, $minute, $second);
+$janbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addDay(1);
 $janend = Carbon::create($year, $month, $day, $hour, $minute, $second)->endOfMonth();
 $febbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1);
 $febend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1)->endOfMonth();
@@ -45,7 +49,7 @@ $decbeg = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonth
 $decend = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->endOfMonth();
 
 // Last Year
-// $janbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addYears(-1);
+
 $janbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addYears(-1);
 $janendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->endOfMonth()->addYears(-1);
 $febbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(1)->addYears(-1);
@@ -71,7 +75,7 @@ $novendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMon
 $decbegly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->addYears(-1);
 $decendly = Carbon::create($year, $month, $day, $hour, $minute, $second)->addMonths(11)->endOfMonth()->addYears(-1);
 
-// Calculate % change
+// REVENUE calculate % change
 
 $jantotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $janend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1) * 100;
 
@@ -97,7 +101,7 @@ $novtotal = (($transactions->where('type', 0)->whereBetween('created_at', [$novb
 
 $dectotal = (($transactions->where('type', 0)->whereBetween('created_at', [$decbeg, $decend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$decbegly, $decendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$decbegly, $decendly])->sum('amount1') * -1) * 100;
 
-// Running total % change
+// REVENUE running total % change
 
 
 $janruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $janend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $janendly])->sum('amount1') * -1) * 100;
@@ -124,6 +128,31 @@ $novruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 
 $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$janbeg, $decend])->sum('amount1') * -1) - ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $decendly])->sum('amount1') * -1)) / ($transactions->where('type', 0)->whereBetween('created_at', [$janbegly, $decendly])->sum('amount1') * -1) * 100;
 
+// CASH FLOW calculate % change
+
+$jantotalcash = (($cashflows->whereBetween('created_at', [$janbeg, $janend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$janbegly, $janendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$janbegly, $janendly])->sum('amount')) * 100;
+
+$febtotalcash = (($cashflows->whereBetween('created_at', [$febbeg, $febend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$febbegly, $febendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$febbegly, $febendly])->sum('amount')) * 100;
+
+$martotalcash = (($cashflows->whereBetween('created_at', [$marbeg, $marend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$marbegly, $marendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$marbegly, $marendly])->sum('amount')) * 100;
+
+$aprtotalcash = (($cashflows->whereBetween('created_at', [$aprbeg, $aprend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$aprbegly, $aprendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$aprbegly, $aprendly])->sum('amount')) * 100;
+
+$maytotalcash = (($cashflows->whereBetween('created_at', [$maybeg, $mayend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$maybegly, $mayendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$maybegly, $mayendly])->sum('amount')) * 100;
+
+$juntotalcash = (($cashflows->whereBetween('created_at', [$junbeg, $junend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$junbegly, $junendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$junbegly, $junendly])->sum('amount')) * 100;
+
+$jultotalcash = (($cashflows->whereBetween('created_at', [$julbeg, $julend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$julbegly, $julendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$julbegly, $julendly])->sum('amount')) * 100;
+
+$augtotalcash = (($cashflows->whereBetween('created_at', [$augbeg, $augend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$augbegly, $augendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$augbegly, $augendly])->sum('amount')) * 100;
+
+$septotalcash = (($cashflows->whereBetween('created_at', [$sepbeg, $sepend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$sepbegly, $sependly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$sepbegly, $sependly])->sum('amount')) * 100;
+
+$octtotalcash = (($cashflows->whereBetween('created_at', [$octbeg, $octend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$octbegly, $octendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$octbegly, $octendly])->sum('amount')) * 100;
+
+$novtotalcash = (($cashflows->whereBetween('created_at', [$novbeg, $novend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$novbegly, $novendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$novbegly, $novendly])->sum('amount')) * 100;
+
+$dectotalcash = (($cashflows->whereBetween('created_at', [$decbeg, $decend])->sum('amount')) - ($cashflows->whereBetween('created_at', [$decbegly, $decendly])->sum('amount'))) / ($cashflows->whereBetween('created_at', [$decbegly, $decendly])->sum('amount')) * 100;
 
 ?>
 
@@ -131,20 +160,7 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 
 <div class="container ">
 
-  <div class="row">
-    {!! Form::open(['method'=>'GET', 'action'=> ['AdminController@index']]) !!}
-    <div class="form-group pl-3">
 
-      {!! Form::submit('Update Year', ['class'=>'btn btn-primary btn-sm mt-5']) !!}
-    </div>
-
-    <div class="form-group pl-3">
-      <input type="text" value="{{$year}}" name="thisyear">
-
-    </div>
-
-    {!! Form::close() !!}
-  </div>
   <div class="row pt-3">
 
     <div class="col-md-6 text-info">
@@ -363,9 +379,9 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 
     <div class="col-md-6 text-success">
       <div class="row">
-        <h1>Cash Balances</h1>
+        <h1 class="pl-3">Cash Balances</h1>
 
-        <h5 class="pl-3 pt-3">Initial Cash:</h5>
+        <h5 class="pl-3 pt-3">Initial Cash: {{$cashflows->where('created_at', $janstart)->sum('amount')}}</h5>
       </div>
       <table class="table table-sm">
         <thead>
@@ -373,23 +389,127 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
             <th>Month</th>
             <th>TY</th>
             <th>LY</th>
+            <th>$ +/-</th>
             <th>% +/-</th>
-            <th>YTD</th>
-            <th>LYTD</th>
-            <th>% +/-</th>
+
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Jan</td>
+            <td>{{$cashflows->whereBetween('created_at',[$janbeg, $janend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$janbegly, $janendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$janbeg, $janend])->sum('amount'))-($cashflows->whereBetween('created_at',[$janbegly, $janendly])->sum('amount'))}}</td>
+            <td>{{number_format($jantotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+            <td>Feb</td>
+            <td>{{$cashflows->whereBetween('created_at',[$febbeg, $febend])->sum('amount')}}</td>
+
+            <td>{{$cashflows->whereBetween('created_at',[$febbegly, $febendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$febbeg, $febend])->sum('amount'))-($cashflows->whereBetween('created_at',[$febbegly, $febendly])->sum('amount'))}}</td>
+            <td>{{number_format($febtotalcash,1)}}%</td>
+
+          </tr>
+          <tr>
+            <td>Mar</td>
+            <td>{{$cashflows->whereBetween('created_at',[$marbeg, $marend])->sum('amount')}}</td>
+
+            <td>{{$cashflows->whereBetween('created_at',[$marbegly, $marendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$marbeg, $marend])->sum('amount'))-($cashflows->whereBetween('created_at',[$marbegly, $marendly])->sum('amount'))}}</td>
+            <td>{{number_format($martotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+
+            <td>Apr</td>
+            <td>{{$cashflows->where('type', 0)->whereBetween('created_at',[$aprbeg, $aprend])->sum('amount')}}</td>
+            <td>{{$cashflows->where('type', 0)->whereBetween('created_at',[$aprbegly, $aprendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$aprbeg, $aprend])->sum('amount'))-($cashflows->whereBetween('created_at',[$aprbegly, $aprendly])->sum('amount'))}}</td>
+            <td>{{number_format($aprtotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+            <td>May</td>
+            <td>{{$cashflows->whereBetween('created_at',[$maybeg, $mayend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$maybegly, $mayendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$maybeg, $mayend])->sum('amount'))-($cashflows->whereBetween('created_at',[$maybegly, $mayendly])->sum('amount'))}}</td>
+            <td>{{number_format($maytotalcash,1)}}%</td>
+
+          </tr>
+          <tr>
+            <td>Jun</td>
+            <td>{{$cashflows->whereBetween('created_at',[$junbeg, $junend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$junbegly, $junendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$junbeg, $junend])->sum('amount'))-($cashflows->whereBetween('created_at',[$junbegly, $junendly])->sum('amount'))}}</td>
+            <td>{{number_format($juntotalcash,1)}}%</td>
+
+
+          <tr>
+            <td>Jul</td>
+            <td>{{$cashflows->whereBetween('created_at',[$julbeg, $julend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$julbegly, $julendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$julbeg, $julend])->sum('amount'))-($cashflows->whereBetween('created_at',[$julbegly, $julendly])->sum('amount'))}}</td>
+            <td>{{number_format($jultotalcash,1)}}%</td>
+
+          </tr>
+          <tr>
+            <td>Aug</td>
+            <td>{{$cashflows->whereBetween('created_at',[$augbeg, $augend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$augbegly, $augendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$augbeg, $augend])->sum('amount'))-($cashflows->whereBetween('created_at',[$augbegly, $augendly])->sum('amount'))}}</td>
+            <td>{{number_format($augtotalcash,1)}}%</td>
+
+          <tr>
+            <td>Sep</td>
+            <td>{{$cashflows->whereBetween('created_at',[$sepbeg, $sepend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$sepbegly, $sependly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$sepbeg, $sepend])->sum('amount'))-($cashflows->whereBetween('created_at',[$sepbegly, $sependly])->sum('amount'))}}</td>
+            <td>{{number_format($septotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+            <td>Oct</td>
+            <td>{{$cashflows->whereBetween('created_at',[$octbeg, $octend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$octbegly, $octendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$octbeg, $octend])->sum('amount'))-($cashflows->whereBetween('created_at',[$octbegly, $octendly])->sum('amount'))}}</td>
+            <td>{{number_format($octtotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+            <td>Nov</td>
+            <td>{{$cashflows->whereBetween('created_at',[$novbeg, $novend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$novbegly, $novendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$novbeg, $novend])->sum('amount'))-($cashflows->whereBetween('created_at',[$novbegly, $novendly])->sum('amount'))}}</td>
+            <td>{{number_format($novtotalcash,1)}}%</td>
+
+
+          </tr>
+          <tr>
+            <td>Dec</td>
+            <td>{{$cashflows->whereBetween('created_at',[$decbeg, $decend])->sum('amount')}}</td>
+            <td>{{$cashflows->whereBetween('created_at',[$decbegly, $decendly])->sum('amount')}}</td>
+            <td>{{($cashflows->whereBetween('created_at',[$decbeg, $decend])->sum('amount'))-($cashflows->whereBetween('created_at',[$decbegly, $decendly])->sum('amount'))}}</td>
+            <td>{{number_format($dectotalcash,1)}}%</td>
+
+          </tr>
 
         </tbody>
+
       </table>
     </div>
   </div>
 
-  <div class="row">
-    {!! Form::open(['method'=>'GET', 'action'=> ['AdminController@adminpandl']]) !!}
-    <div class="form-group pl-3">
-      {!! Form::submit('P and L Report', ['class'=>'btn btn-primary btn-sm mt-5']) !!}
+  <div>
+    {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['AdminController@adminpandl']]) !!}
+    <div class="form-group">
+      {!! Form::submit('P and L Report', ['class'=>'btn btn-primary btn-sm']) !!}
     </div>
 
 
@@ -400,6 +520,20 @@ $decruntotal = (($transactions->where('type', 0)->whereBetween('created_at', [$j
 
     <div class="form-group pl-3">
       <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="enddate" class="mt-1">
+
+    </div>
+
+    {!! Form::close() !!}
+  </div>
+  <div class="row pt-3">
+    {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['AdminController@index']]) !!}
+    <div class="form-group pl-3">
+
+      {!! Form::submit('Update Year', ['class'=>'btn btn-primary btn-sm']) !!}
+    </div>
+
+    <div class="form-group pl-3">
+      <input type="text" value="{{$year}}" name="thisyear">
 
     </div>
 

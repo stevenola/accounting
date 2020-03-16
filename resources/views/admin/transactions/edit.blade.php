@@ -16,10 +16,10 @@
 
 
 @endif
-<div class="container col-sm-3">
+<div class="container col-sm-4">
 
 
-  <h1>Edit Transaction</h1>
+  <h1>Edit Transaction {{$transaction->id}}</h1>
 
   {!! Form::model($transaction,['method'=>'PATCH', 'action'=> ['TransactionsController@update', $transaction->id], 'files'=>true]) !!}
 
@@ -80,7 +80,7 @@
   {!! Form::open(['method'=>'DELETE', 'action'=> ['TransactionsController@destroy', $transaction->id]]) !!}
 
   <div class="form-group">
-    {!! Form::submit('Delete Transaction', ['class'=>'btn btn-danger col-sm-6']) !!}
+    {!! Form::submit('Delete Transaction', ['class'=>'btn btn-danger col-sm-6', 'onclick'=>"return confirm('Are you sure?')"]) !!}
   </div>
 
   {!! Form::close() !!}

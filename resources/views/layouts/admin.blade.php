@@ -15,7 +15,7 @@
 
   <script src="https://kit.fontawesome.com/7d04f56961.js" crossorigin="anonymous"></script>
 
-
+  <title>@yield('title', 'Avalon Accounting')</title>
 
 
   <!-- Fonts -->

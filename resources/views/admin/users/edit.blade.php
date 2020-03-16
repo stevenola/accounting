@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+
 @section('content')
 
 <div class="container  col-sm-3">
@@ -46,15 +47,18 @@
   </div>
   {!! Form::close() !!}
 
+
+
   {!! Form::open(['method'=>'DELETE', 'action'=> ['UsersController@destroy', $user->id]]) !!}
   <div class="form-group">
-    {!! Form::submit('Delete User', ['class'=>'btn btn-danger']) !!}
+
+
+    {!! Form::submit('Delete User', ['class'=>'btn btn-danger', 'onclick'=>"return confirm('Are you sure?')"]) !!}
   </div>
   {!! Form::close() !!}
 
 
 </div>
-
 
 
 

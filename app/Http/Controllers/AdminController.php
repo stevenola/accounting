@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cashflow;
 use Carbon\Carbon;
 use App\Client;
 use App\Description;
@@ -25,9 +26,10 @@ class AdminController extends Controller
     {
 
         $transactions = Transaction::all();
+        $cashflows = Cashflow::all();
         $thisyear = $request['thisyear'];
 
-        return view('admin.index', compact('transactions', 'thisyear'));
+        return view('admin.index', compact('transactions', 'cashflows', 'thisyear'));
     }
 
     public function adminpandl(Request $request)

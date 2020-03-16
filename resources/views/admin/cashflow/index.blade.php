@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Cash Flow')
+
 @section('content')
 <div class="container col-sm-6">
   <h1>Cash Flow</h1>
