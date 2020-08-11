@@ -66,17 +66,17 @@
   <br>
 
 
-  <table class="table table-sm">
+  <table class="table table-sm table-striped">
     <thead>
       <tr>
         <th>Date</th>
         <th>Client</th>
         <th>Trans</th>
         <th>Type</th>
-        <th>Desc 1</th>
-        <th>Amount 1</th>
-        <th>Desc 2</th>
-        <th>Amount 2</th>
+        <th>Desc1</th>
+        <th>Amt1</th>
+        <th>Desc2</th>
+        <th>Amt2</th>
         <th>Notes</th>
         <th>Check No</th>
 
@@ -99,9 +99,9 @@
 
         <td>{{$transaction->type == 1 ? 'Invoice' : 'Deposit'}}</td>
         <td>{{$transaction->description->name}}</td>
-        <td>{{$transaction->amount1}}</td>
+        <td>{{number_format($transaction->amount1, 2)}}</td>
         <td>{{$transaction->description2}}</td>
-        <td>{{$transaction->amount2}}</td>
+        <td>{{number_format($transaction->amount2, 2)}}</td>
         <td>{{$transaction->notes}}</td>
         <td>{{$transaction->check_no}}</td>
         <td><a href="{{route('transactions.show', $transaction->id)}}">Print</a></td>
@@ -119,6 +119,33 @@
     {{$transactions->links()}}
   </div>
 
+</div>
+
+<!-- Add IN STATE code -->
+<?php
+
+use Carbon\Carbon;
+?>
+
+<div>
+  {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['TransactionsController@index']]) !!}
+  <div class="form-group">
+    {!! Form::submit('In State Revenue', ['class'=>'btn btn-primary btn-sm']) !!}
+  </div>
+
+  <div class="form-group pl-3">
+    <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="begdate" class="mt-1">
+
+  </div>
+
+  <div class="form-group pl-3">
+    <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="enddate" class="mt-1">
+
+  </div>
+
+
+
+  {!! Form::close() !!}
 </div>
 
 

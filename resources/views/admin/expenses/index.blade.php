@@ -22,7 +22,7 @@
 
 
 
-  <table class="table table-sm">
+  <table class="table table-sm table-striped">
     <thead>
       <tr>
         <th>Date</th>
@@ -42,7 +42,7 @@
 
         <td><a href="{{route('expenses.edit', $expense->id)}}">{{date('m-d-Y', strtotime($expense->created_at))}}</a></td>
         <td>{{$expense->expensename->name}}</td>
-        <td>{{$expense->amount}}</td>
+        <td>{{number_format($expense->amount)}}</td>
 
 
       </tr>

@@ -52,7 +52,7 @@
 
   <div class="form-group">
     {!! Form::label('in_state', 'In State:') !!}
-    {!! Form::select('in_state', array(1 => 'In State', 0 => 'Not Active'), null,['class'=>'form-control'])!!}
+    {!! Form::select('in_state', array(1 => 'In State', 0 => 'Out Of State'), null,['class'=>'form-control'])!!}
   </div>
 
   <div class="form-group">

@@ -90,7 +90,7 @@
 
 
     <div class="form-group">
-      {!! Form::submit('Create Client', ['class'=>'btn btn-primary']) !!}
+      {!! Form::submit('Create Invoice', ['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}

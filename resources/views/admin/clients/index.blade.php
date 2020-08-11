@@ -21,7 +21,7 @@
   <br>
   <div class="row">
     <h3>Active</h3>
-    <table class="table table-sm">
+    <table class="table table-sm table-striped">
       <thead>
         <tr>
 
@@ -46,7 +46,7 @@
 
           <td><a href="{{route('clients.edit', $client->id)}}">{{$client->name}}</a></td>
 
-          <td><a href="{{url('showclienttrans/'.$client->id. '/')}}">{{$transactions->where('client_id', $client->id)->sum('amount1')}}</a></td>
+          <td><a href="{{url('showclienttrans/'.$client->id. '/')}}">{{number_format($transactions->where('client_id', $client->id)->sum('amount1'),2)}}</a></td>
           <td>{{$client->retainer}}</td>
           <td>{{$client->recurring == 1 ? 'Recurring' : 'No'}}</td>
           <td>{{$client->print == 1 ? 'Print' : 'No'}}</td>
@@ -72,7 +72,7 @@
   <hr>
   <div class="row">
     <h3>Inactive</h3>
-    <table class="table table-sm">
+    <table class="table table-sm table-striped">
       <thead>
         <tr>
 
@@ -94,7 +94,7 @@
 
           <td><a href="{{route('clients.edit', $client->id)}}">{{$client->name}}</a></td>
 
-          <td><a href="{{url('showclienttrans/'.$client->id. '/')}}">{{$transactions->where('client_id', $client->id)->sum('amount1')}}</a></td>
+          <td><a href="{{url('showclienttrans/'.$client->id. '/')}}">{{number_format($transactions->where('client_id', $client->id)->sum('amount1'), 2)}}</a></td>
           <td>{{$client->retainer}}</td>
           <td>{{$client->user->name}}</td>
           <td>{{$client->in_state == 1 ? 'In State' : 'Out of State'}}</td>

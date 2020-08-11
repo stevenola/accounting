@@ -53,7 +53,8 @@
 
 
     <div class="row">
-      <div class="col-md-3">
+      {{-- <div class="col-md-3"> --}}
+        <div class="col-6">
         <div class="pt-2 pb-3">
           <h4><b>Bill To:</b></h4>
         </div>
@@ -107,7 +108,7 @@
 
         <div class="">
 
-          <h4 class="">${{$transaction->amount1}}</h4>
+          <h4 class="">${{number_format($transaction->amount1,2)}}</h4>
 
         </div>
       </div>
@@ -132,7 +133,7 @@
 
         <div class="">
 
-          <h4 class="">${{$transaction->amount2}}</h4>
+          <h4 class="">${{number_format($transaction->amount2,2)}}</h4>
 
         </div>
       </div>
@@ -156,7 +157,7 @@
             <div class="">
 
               <!-- <h4 class="">Total: {{$transaction->amount1}} + {{$transaction->amount2}}</h4> -->
-              <h4>${{$transaction->amount1 + $transaction->amount2}}</h4>
+              <h4>${{number_format($transaction->amount1 + $transaction->amount2,2)}}</h4>
             </div>
           </div>
         </div>

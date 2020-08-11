@@ -2,7 +2,7 @@
 
 @section('content')
 <?php
-// $grandtotal = ($transactions->whereBetween('created_at', [$begdate, $enddate])->where('type', 0)->sum('amount1') * -1) - ($expenses->whereBetween('created_at', [$begdate, $enddate])->sum('amount'));
+
 
 $begdate = $begdate . ' ' . '00:00:00';
 $enddate = $enddate . ' ' . '00:00:00';
@@ -22,12 +22,19 @@ $enddate = $enddate . ' ' . '00:00:00';
       </tr>
       <tbody>
 
-        <tr class=" table-active">
-          <td>Revenue</td>
+        <tr class=" table text-success">
+          <td><strong>Initial Cash </strong></td>
 
-          <td>{{$transactions->whereBetween('created_at',[$begdate,$enddate])->where('type', 0)->sum('amount1')*-1}}</td>
+          <td><strong>{{$cashflows->where('created_at', $begdate)->sum('amount')}} </strong></td>
 
         </tr>
+        <tr class=" table text-success">
+          <td><strong>Revenue </strong></td>
+
+          <td><strong>{{$transactions->whereBetween('created_at',[$begdate,$enddate])->where('type', 0)->sum('amount1')*-1}} </strong></td>
+
+        </tr>
+
 
 
         @if($expensenames)
@@ -45,19 +52,22 @@ $enddate = $enddate . ' ' . '00:00:00';
         @endforeach
         @endif
 
-        <tr class="table-active">
-          <td>Total Expenses</td>
-          <td>
-            {{$expenses->whereBetween('created_at',[$begdate,$enddate])->sum('amount')}}
+        <tr class="table text-success">
+          <td> <strong>
+              Total Expenses
+            </strong>
+          </td>
+          <td><strong>
+              {{$expenses->whereBetween('created_at',[$begdate,$enddate])->sum('amount')}}</strong>
           </td>
         </tr>
-        <tr class="table-active">
-          <td>Cash Profit</td>
+        <tr class="table text-success">
+          <td><strong>Ending Cash </strong></td>
           <td>
+            <strong>
+              {{($transactions->whereBetween('created_at',[$begdate,$enddate])->where('type', 0)->sum('amount1')*-1)-($expenses->whereBetween('created_at',[$begdate,$enddate])->sum('amount'))+($cashflows->where('created_at', $begdate)->sum('amount'))}}
 
-            {{($transactions->whereBetween('created_at',[$begdate,$enddate])->where('type', 0)->sum('amount1')*-1)-($expenses->whereBetween('created_at',[$begdate,$enddate])->sum('amount'))}}
-
-
+            </strong>
           </td>
         </tr>
 

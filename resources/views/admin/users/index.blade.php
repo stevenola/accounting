@@ -25,7 +25,7 @@
 
 
 
-  <table class="table">
+  <table class="table table-sm table-striped">
     <thead>
       <tr>
 

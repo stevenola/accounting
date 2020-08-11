@@ -48,7 +48,8 @@
 
 
     <div class="row">
-      <div class="col-md-3">
+      {{-- <div class="col-md-3"> --}}
+      <div class="col-6">
         <div class="pt-2 pb-3">
           <h4><b>Bill To:</b></h4>
         </div>

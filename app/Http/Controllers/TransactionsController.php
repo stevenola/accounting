@@ -27,11 +27,12 @@ class TransactionsController extends Controller
 
 
 
+
             return view('admin.transactions.index', compact('transactions'));
         }
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

@@ -15,7 +15,7 @@
   </div>
   <br>
 
-  <table class="table">
+  <table class="table table-sm  table-striped">
     <thead>
       <tr>
         <th>Trans No</th>
@@ -47,9 +47,9 @@
         <td>{{date('m-d-Y', strtotime($transaction->created_at))}}</td>
         <td>{{$transaction->type == 1 ? 'Invoice' : 'Deposit'}}</td>
         <td>{{$transaction->description->name}}</td>
-        <td>{{$transaction->amount1}}</td>
+        <td>{{number_format($transaction->amount1,2)}}</td>
         <td>{{$transaction->description2}}</td>
-        <td>{{$transaction->amount2}}</td>
+        <td>{{number_format($transaction->amount2,2)}}</td>
         <td>{{$transaction->notes}}</td>
         <td>{{$transaction->check_no}}</td>
         <td><a href="{{route('transactions.show', $transaction->id)}}">Print</a></td>

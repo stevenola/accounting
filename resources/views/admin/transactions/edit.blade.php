@@ -58,7 +58,7 @@
   </div>
   <div class="form-group">
     {!! Form::label('amount2', 'Amt 2:') !!}
-    {!! Form::text('city', null, ['class'=>'form-control'])!!}
+    {!! Form::text('amount2', null, ['class'=>'form-control'])!!}
   </div>
   <div class="form-group">
     {!! Form::label('notes', 'Notes:') !!}

@@ -22,7 +22,7 @@
 
 
 
-  <table class="table table-sm">
+  <table class="table table-sm table-striped">
     <thead>
       <tr>
         <th>Date</th>
@@ -40,7 +40,7 @@
 
 
         <td><a href="{{route('cashflows.edit', $cashflow->id)}}">{{date('m-d-Y', strtotime($cashflow->created_at))}}</a></td>
-        <td>{{$cashflow->amount}}</td>
+        <td>{{number_format($cashflow->amount)}}</td>
 
 
       </tr>

@@ -28,9 +28,9 @@
                 <!-- <a class="navbar-brand" href="{{ url('/') }}">
                     Home
                 </a> -->
-                <a class="navbar-brand" href="{{ url('admin') }}">
-                    Admin
-                </a>
+                {{-- <a class="navbar-brand" href="{{ url('admin') }}">
+                    Dashboard
+                </a> --}}
                 <!-- <a class="navbar-brand" href="{{ url('clients') }}">
                     Clients
                 </a>
@@ -60,6 +60,12 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item">
+                        <a class="navbar-brand" href="{{ url('admin') }}">
+                           <p>Dashboard</p> 
+                        </a>
+                    </li>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
