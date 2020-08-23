@@ -32,6 +32,8 @@ class AdminController extends Controller
             ->get();
         // return $transactions;
 
+
+
         $cashflows = Cashflow::all();
         $thisyear = $request['thisyear'];
 

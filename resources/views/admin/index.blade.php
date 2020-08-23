@@ -10,12 +10,6 @@
 
 use Carbon\Carbon;
 
-
-// if ($thisyear == " ") {
-//   $year = Carbon::now()->year;
-// } else {
-//   $year = $thisyear;
-
 ?>
 <div class="container ">
 
@@ -24,46 +18,46 @@ use Carbon\Carbon;
 
 {{-- REVENUE THIS YEAR --}}
 
-    <div class="col-md-2 text-info">
+    <div class="col-md-2">
      
-
-
       <table class="table table-sm  table-striped">
         <thead>
           <tr>
             <th>Month</th>
-            <th>TY</th>
- 
+            <th>TY</th> 
+         
           </tr>
         </thead>
-
         <tbody>
 
-<?php
-$year = Carbon::now()->year;
-$lastyear = date('Y', strtotime('last year'));
+            <?php
+            // $year = Carbon::now()->year;
+            if (is_null($thisyear)) {
+            $year = Carbon::now()->year;
+          } else {
+            $year = $thisyear;
+          }      
+            // $lastyear = date('Y', strtotime('last year'));
+          $lastyear = $year-1;
 
-$runningtotal = 0;
-?>     
+            $runningtotal = 0;
+          
+            ?>     
+          
         @foreach ($transactions as $transaction)
         <tr> 
-    
+
         @if ($transaction->year == $year)
-       
- 
-        {{-- <td>{{$transaction->year}}</td> --}}
+
        <td>{{$transaction->month}}</td>
-       <td>{{$transaction->total}}</td>
-      
+       <td>{{number_format($transaction->total, 2)}}</td>
+   
        @endif
-
-
        
-      </tr>
+       </tr>
+
        @endforeach
-       
-
-     
+            
         </tbody>
 
       </table>
@@ -71,8 +65,6 @@ $runningtotal = 0;
 
     {{-- REVENUE LAST YEAR --}}
     <div class="col-md-2 text-info">
-
-
 
       <table class="table table-sm  table-striped">
         <thead>
@@ -90,7 +82,7 @@ $runningtotal = 0;
 
        @if ($transaction->year == $lastyear)
 
-       <td>{{$transaction->total}}</td>
+       <td>{{number_format($transaction->total, 2)}}</td>
        @endif
       </tr>
        @endforeach
@@ -100,42 +92,40 @@ $runningtotal = 0;
       </table>
     </div>
 
+ {{-- REVENUE % CHANGE --}}
+
+
+
+
+
   {{-- REVENUE YTD --}}
     <div class="col-md-2 text-info">
-
-
-
       <table class="table table-sm  table-striped">
         <thead>
-          <tr>
-        
-      
+          <tr>  
             <th>YTD</th>
-        
           </tr>
         </thead>
 
         <tbody>
-          
-   
+           
         @foreach ($transactions as $transaction)
         <tr> 
 
        @if ($transaction->year == $year)
 
-       <td>{{$runningtotal += $transaction->total}}</td>
+       <td>{{number_format($runningtotal += $transaction->total,2)}}</td>
       
        @endif
       </tr>
        @endforeach
-       
-      
+            
         </tbody>
 
       </table>
     </div>
 
-     {{-- REVENUE YTD --}}
+     {{-- REVENUE LYTD --}}
 
      <?php
         $runningtotal = 0;
@@ -150,7 +140,7 @@ $runningtotal = 0;
         
    
             <th>LYTD</th>
-            {{-- <th>% +/-</th> --}}
+           
           </tr>
         </thead>
 
@@ -162,7 +152,7 @@ $runningtotal = 0;
 
        @if ($transaction->year == $lastyear)
 
-       <td>{{$runningtotal += $transaction->total}}</td>
+       <td>{{number_format($runningtotal += $transaction->total,2)}}</td>
       
        @endif
       </tr>
@@ -175,7 +165,7 @@ $runningtotal = 0;
     </div>
 
      {{-- CASH --}}
-    <div class="col-md-4 text-success">
+    <div class="col-md-2 text-success">
       {{-- <div class="row">
         <h1 class="pl-3">Cash Balances</h1>
 
@@ -198,7 +188,7 @@ $runningtotal = 0;
     </div> --}}
   </div>
 
-  <div>
+  <div class="row" >
     {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['AdminController@adminpandl']]) !!}
     <div class="form-group">
       {!! Form::submit('P and L Report', ['class'=>'btn btn-primary btn-sm']) !!}
@@ -216,8 +206,7 @@ $runningtotal = 0;
     </div>
 
     {!! Form::close() !!}
-  </div>
-  <div class="row pt-3">
+
     {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['AdminController@index']]) !!}
     <div class="form-group pl-3">
 
@@ -232,6 +221,5 @@ $runningtotal = 0;
     {!! Form::close() !!}
   </div>
 </div>
-
 
 @endsection

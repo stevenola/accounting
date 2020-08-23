@@ -16,7 +16,7 @@ class TransactionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         {
@@ -29,6 +29,10 @@ class TransactionsController extends Controller
 
 
             return view('admin.transactions.index', compact('transactions'));
+
+            // code for in state calc
+            // $begdate = $request['begdate'];
+            // $enddate = $request['enddate'];
         }
     }
 
