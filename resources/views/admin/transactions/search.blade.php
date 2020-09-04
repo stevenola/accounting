@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-  <h1 class="ml-2">Transactions</h1>
+<h1 class="ml-2">Search Results: {{$search_text}}</h1>
   <br>
   <?php
 
@@ -13,63 +13,10 @@
   $year = date('Y');
 
   $today = $year . '-' . $month . '-' . $day;
+
+  // dd($search_text);
   ?>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="row">
-          {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@createdeposit']]) !!}
-          <div class="form-group">
-            {!! Form::submit('Make Deposit', ['class'=>'btn btn-primary mr-2 ml-2']) !!}
-          </div>
-          {!! Form::close() !!}
-
-
-          {!! Form::open(['method'=>'GET', 'action'=> ['TransactionsController@create']]) !!}
-          <div class="form-group">
-            {!! Form::submit('Create Invoice', ['class'=>'btn btn-primary']) !!}
-          </div>
-          {!! Form::close() !!}
-
-          <div class="pl-2">
-            <form class="form-inline" type="get" action="{{url('/admin/transactions/search')}}">
-              <input type="search" name="query" id="search" class="form-control" aria-describedby="" placeholder="Search Transactions">
-              <button class="btn btn-success" type="submit">Search</button>
-            
-            </form>
-            
-            </div>
-
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="row">
-          {!! Form::open(['method'=>'GET', 'action'=> ['ClientsController@createrecur']]) !!}
-          <div class="form-group">
-            {!! Form::submit('Recurring', ['class'=>'btn btn-primary mr-2']) !!}
-          </div>
-          {!! Form::close() !!}
-
-
-
-          {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['TransactionsController@printrecur']]) !!}
-          <div class="form-group">
-            {!! Form::submit('Print Recurring', ['class'=>'btn btn-primary mr-2']) !!}
-          </div>
-
-          <div class="form-group">
-            <input type="date" value="<?php echo $today; ?>" name="date" class="mt-1">
-
-          </div>
-
-          {!! Form::close() !!}
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 
   <br>
 
@@ -122,20 +69,20 @@
 
     </tbody>
   </table>
-
+{{-- 
   <div class="col-12 d-flex justify-content-center">
     {{$transactions->links()}}
-  </div>
+  </div> --}}
 
 </div>
 
 <!-- Add IN STATE code -->
 <?php
 
-use Carbon\Carbon;
+// use Carbon\Carbon;
 ?>
 
-<div>
+{{-- <div>
   {!! Form::open(['method'=>'GET', 'class'=>'form-inline', 'action'=> ['TransactionsController@index']]) !!}
   <div class="form-group">
     {!! Form::submit('In State Revenue', ['class'=>'btn btn-primary btn-sm']) !!}
@@ -149,7 +96,7 @@ use Carbon\Carbon;
   <div class="form-group pl-3">
     <input type="date" value="{{Carbon::today()->format('Y-m-d')}}" name="enddate" class="mt-1">
 
-  </div>
+  </div> --}}
 
 
 

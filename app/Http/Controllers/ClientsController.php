@@ -177,4 +177,13 @@ class ClientsController extends Controller
 
         return view('admin.clients.transsum', compact('clients', 'transactions'));
     }
+
+
+    public function search()
+    {
+        $search_text = $_GET['query'];
+        $transactions = Transaction::all();
+        $clients = Client::where('name', 'LIKE', '%' . $search_text . '%')->get();
+        return view('admin.clients.search', compact('clients', 'transactions', 'search_text'));
+    }
 }

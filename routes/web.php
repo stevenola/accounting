@@ -38,6 +38,7 @@ Route::get('adminpandl', 'AdminController@adminpandl')->middleware('role');
 // The middleware web route wraps around route for validation messages
 Route::group(['middleware' => 'web'], function () {
     Route::resource('clients', 'ClientsController')->middleware('role');
+    Route::get('/admin/clients/search', 'ClientsController@search');
 });
 
 Route::get('transsum', 'ClientsController@transsum')->middleware('role');
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'web'], function () {
 // The middleware web route wraps around route for validation messages
 Route::group(['middleware' => 'web'], function () {
     Route::resource('transactions', 'TransactionsController')->middleware('role');
+    Route::get('/admin/transactions/search', 'TransactionsController@search');
 });
 
 Route::get('showclienttrans/{id}', 'TransactionsController@showclienttrans')->middleware('role');

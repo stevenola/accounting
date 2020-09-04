@@ -8,6 +8,7 @@ use App\Http\Requests\CreateTransactionRequest;
 use App\Client;
 use App\Description;
 use App\Transaction;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class TransactionsController extends Controller
 {
@@ -24,9 +25,6 @@ class TransactionsController extends Controller
 
 
             $transactions = Transaction::orderBy('created_at', 'Desc')->paginate(12);
-
-
-
 
             return view('admin.transactions.index', compact('transactions'));
 
@@ -207,5 +205,23 @@ class TransactionsController extends Controller
 
             return view('admin.transactions.printrecur', compact('transactions', 'clients', 'date'));
         }
+    }
+
+    public function search()
+    {
+
+        // $transactions = Transaction::all();
+        // $transactions = Transaction::where('id', 'LIKE', '%' . $search_text . '%')->get();
+
+        $transactions = Transaction::with('client')->whereHas('client', function ($q) {
+            $search_text = $_GET['query'];
+            $q->where('name', 'LIKE', '%' . $search_text . '%');
+        })->get();
+
+        $transactions = $transactions->sortByDesc('created_at');
+
+        $search_text = $_GET['query'];
+
+        return view('admin.transactions.search', compact('transactions', 'search_text'));
     }
 }
